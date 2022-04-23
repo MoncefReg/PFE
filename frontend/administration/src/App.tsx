@@ -1,32 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// Routing
+import { Suspense } from 'react';
+import Router from './components/Router';
+import { BrowserRouter } from 'react-router-dom';
+
+// Localization
 import './i18n/config';
 
 // Theme
-import { ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from '@mui/material/styles';
 import createTheme from './theme';
+
+// Components
+import FallbackScreen from './components/FallbackScreen';
 
 function App() {
   const theme = createTheme();
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Suspense fallback={<FallbackScreen />}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </Suspense>
     </ThemeProvider>
   );
 }
