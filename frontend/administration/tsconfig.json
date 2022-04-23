@@ -17,6 +17,6 @@
     "jsx": "react-jsx",
     "baseUrl": "."
   },
-  "include": ["src", "media.d.ts"],
+  "include": ["src", "media.d.ts", "theme.d.ts"],
   "exclude": ["node_modules"]
 }
