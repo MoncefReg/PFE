@@ -12,21 +12,19 @@ import createTheme from './theme';
 
 // Components
 import FallbackScreen from './components/FallbackScreen';
-
-import { CookiesProvider } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
 function App() {
-  const theme = createTheme();
+  const [cookies] = useCookies(['theme']);
+  const theme = createTheme({ theme: cookies.theme });
 
   return (
     <ThemeProvider theme={theme}>
-      <CookiesProvider>
-        <Suspense fallback={<FallbackScreen />}>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </Suspense>
-      </CookiesProvider>
+      <Suspense fallback={<FallbackScreen />}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </Suspense>
     </ThemeProvider>
   );
 }

@@ -23,8 +23,12 @@ const themeOptions = [
   }
 ];
 
-const createMuiTheme = (config?: any) => {
-  const options = themeOptions.find((option) => option.mode === LIGHT_THEME);
+const defaultConfig = {
+  theme: LIGHT_THEME
+};
+
+const createMuiTheme = (config: any = defaultConfig) => {
+  const options = themeOptions.find((option) => option.mode === config.theme);
 
   return createTheme({ ...options, ...config });
 };

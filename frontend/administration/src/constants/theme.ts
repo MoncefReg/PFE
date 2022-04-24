@@ -1,4 +1,8 @@
-export const THEME_OPTIONS = {
+import { ThemeOptions } from 'src/models';
+
+export const THEME_OPTIONS: {
+  [key: string]: ThemeOptions;
+} = {
   DARK_THEME: 'dark',
   LIGHT_THEME: 'light'
 };

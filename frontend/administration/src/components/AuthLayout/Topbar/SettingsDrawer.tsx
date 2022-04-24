@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+// Hooks
+import useSettings from 'src/hooks/useSettings';
+
 // UI
 import {
   Button,
@@ -20,13 +23,15 @@ import { Settings as SettingsIcon, X as CloseIcon } from 'react-feather';
 // Others
 import { LANGUAGES, SETTINGS_DRAWER_WIDTH, THEME_OPTIONS } from 'src/constants';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
 const PREFIX = 'settings-drawer';
 
 const classes = {
   root: `${PREFIX}-root`,
   container: `${PREFIX}-container`,
-  languageItem: `${PREFIX}-language-item`
+  languageItem: `${PREFIX}-language-item`,
+  selected: `${PREFIX}-selected`
 };
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -35,11 +40,16 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
   [`& .${classes.languageItem}`]: {
     borderRadius: 10
+  },
+  [`& .${classes.selected}`]: {
+    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.action.focus
   }
 }));
 
 const SettingsDrawer = () => {
   const { t } = useTranslation();
+  const { theme: settingsTheme, saveTheme } = useSettings();
 
   // States
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +62,9 @@ const SettingsDrawer = () => {
     setIsOpen(false);
   };
 
-  const handleThemeChange = (theme: any) => {};
+  const handleThemeChange = (theme: any) => {
+    saveTheme(theme);
+  };
 
   const handleLanguageChange = (language: any) => {};
 
@@ -89,7 +101,13 @@ const SettingsDrawer = () => {
               <Typography mb={1}>{t('THEME')}</Typography>
               <ButtonGroup fullWidth>
                 {Object.entries(THEME_OPTIONS).map(([key, value]) => (
-                  <Button key={key} onClick={() => handleThemeChange(value)}>
+                  <Button
+                    key={key}
+                    onClick={() => handleThemeChange(value)}
+                    className={clsx({
+                      [classes.selected]: value === settingsTheme
+                    })}
+                  >
                     {t(`THEME_OPTIONS.${key}`)}
                   </Button>
                 ))}
