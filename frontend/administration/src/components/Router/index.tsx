@@ -1,5 +1,8 @@
 import { Fragment, lazy } from 'react';
 import { Route, Routes } from 'react-router';
+import SidebarProvider from 'src/contexts/SidebarContext';
+import UserProvider from 'src/contexts/UserContext';
+import AuthLayout from 'src/layouts/AuthLayout';
 import RouteType from 'src/models/Route';
 
 const Router = () => {
@@ -20,16 +23,20 @@ const renderRoute = (route: RouteType, index: number) => {
     guardProps
   } = route;
 
-  const RouteLayout: any = Layout ? <Layout {...layoutProps} /> : Fragment;
-  const RouteGuard: any = Guard ? <Guard {...guardProps} /> : Fragment;
+  const RouteLayout: any = Layout ?? Fragment;
+  const RouteGuard: any = Guard ?? Fragment;
 
   return (
     <Route
       element={
-        <RouteGuard>
-          <RouteLayout>
-            <Component />
-          </RouteLayout>
+        <RouteGuard {...guardProps}>
+          <SidebarProvider>
+            <UserProvider>
+              <RouteLayout {...layoutProps}>
+                <Component />
+              </RouteLayout>
+            </UserProvider>
+          </SidebarProvider>
         </RouteGuard>
       }
       path={path}
@@ -39,7 +46,11 @@ const renderRoute = (route: RouteType, index: number) => {
 };
 
 const RoutesList: RouteType[] = [
-  { path: '/*', component: lazy(() => import('src/components/FallbackScreen')) }
+  {
+    path: '/*',
+    component: lazy(() => import('src/components/FallbackScreen')),
+    layout: AuthLayout
+  }
 ];
 
 export default Router;
