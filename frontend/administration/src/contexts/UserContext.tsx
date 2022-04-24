@@ -1,20 +1,25 @@
 import { createContext, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { User } from 'src/models';
 
 interface Context {
-  setUser?: (data: User) => void;
-  user?: User;
+  setUser: (data: User | null) => void;
+  user?: User | null;
 }
 
-const initValue: Context = {};
+const initValue: Context = {
+  setUser: () => {}
+};
 
 export const UserContext = createContext(initValue);
 
-const UserContextProvider = ({ children }: { children: JSX.Element }) => {
-  const [user, setUser] = useState<User | undefined>();
+const UserProvider = ({ children }: { children: JSX.Element }) => {
+  const [user, setUser] = useState<User | null>();
+  const [, setCookies] = useCookies(['user']);
 
-  const updateUser = (user: User) => {
-    setUser({ ...user });
+  const updateUser = (user: User | null) => {
+    setUser(user);
+    setCookies('user', user);
   };
   return (
     <UserContext.Provider value={{ user, setUser: updateUser }}>
@@ -23,4 +28,4 @@ const UserContextProvider = ({ children }: { children: JSX.Element }) => {
   );
 };
 
-export default UserContextProvider;
+export default UserProvider;

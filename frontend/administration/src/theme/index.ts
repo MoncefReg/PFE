@@ -1,6 +1,8 @@
 import { createTheme } from '@mui/material';
-import { DARK_THEME, LIGHT_THEME } from 'src/constants';
+import { THEME_OPTIONS } from 'src/constants';
 import typography from './typography';
+
+const { DARK_THEME, LIGHT_THEME } = THEME_OPTIONS;
 
 const themeOptions = [
   {
@@ -14,13 +16,19 @@ const themeOptions = [
   {
     mode: DARK_THEME,
     components: {},
-    palette: {},
+    palette: {
+      mode: DARK_THEME
+    },
     typography
   }
 ];
 
-const createMuiTheme = (config?: any) => {
-  const options = themeOptions.find((option) => option.mode === LIGHT_THEME);
+const defaultConfig = {
+  theme: LIGHT_THEME
+};
+
+const createMuiTheme = (config: any = defaultConfig) => {
+  const options = themeOptions.find((option) => option.mode === config.theme);
 
   return createTheme({ ...options, ...config });
 };

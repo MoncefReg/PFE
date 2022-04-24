@@ -1,5 +1,8 @@
+import { useCookies } from 'react-cookie';
+
 const useAuth = () => {
-  const isAuth = Boolean(localStorage.getItem('token'));
+  const [cookies] = useCookies(['token']);
+  const isAuth = Boolean(cookies['token']);
   return { isAuth };
 };
 
