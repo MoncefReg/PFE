@@ -1,0 +1,15 @@
+{
+  "ACCOUNT": "Account",
+  "LOGOUT": "Logout",
+  "SETTINGS": "Settings",
+  "THEME": "Theme",
+  "LANGUAGE": "Language",
+  "THEME_OPTIONS": {
+    "DARK_THEME": "Dark",
+    "LIGHT_THEME": "Light"
+  },
+  "LANGUAGE_OPTIONS": {
+    "ENGLISH": "English",
+    "ARABIC": "Arabic"
+  }
+}

@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Routing
+import { Suspense } from 'react';
+import Router from './components/Router';
+import { BrowserRouter } from 'react-router-dom';
+
+// Localization
+import './i18n/config';
+
+// Theme
+import { ThemeProvider } from '@mui/material/styles';
+import createTheme from './theme';
+
+// Components
+import FallbackScreen from './components/FallbackScreen';
+import { useCookies } from 'react-cookie';
 
 function App() {
+  const [cookies] = useCookies(['theme']);
+  const theme = createTheme({ theme: cookies.theme });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Suspense fallback={<FallbackScreen />}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </Suspense>
+    </ThemeProvider>
   );
 }
 

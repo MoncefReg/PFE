@@ -1,0 +1,60 @@
+version: "3.8"
+services:
+  administration:
+    image: pfe/frontend:1.0
+    ports:
+      - "5000:5000"
+    restart: on-failure
+    # volumes:
+    # - ../../frontend:/opt/frontend
+    networks:
+      - frontend
+
+  backend-api:
+    image: pfe/backend:1.0
+    ports:
+      - "8888:8888"
+    restart: on-failure
+    depends_on:
+      - postgres-db
+    environment:
+      PG_HOSTNAME: postgres-db
+    volumes:
+      - ../backend/backend:/opt/backend
+    networks:
+      - backend
+
+  postgres-db:
+    image: postgres:14.1
+    environment:
+      POSTGRES_DB: pfe
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_lib:/var/lib/postgresql/data
+    networks:
+      - backend
+    restart: on-failure
+
+  pfe-gateway:
+    image: haproxy:alpine
+    ports:
+      - 80:80
+    depends_on:
+      - administration
+      - backend-api
+    networks:
+      - backend
+      - frontend
+    restart: on-failure
+    volumes:
+      - ./proxy-config/config.cfg:/usr/local/etc/haproxy/haproxy.cfg
+
+volumes:
+  pg_lib:
+
+networks:
+  frontend:
+  backend:

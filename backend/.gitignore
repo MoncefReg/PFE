@@ -1,0 +1,10 @@
+__pycache__
+.idea
+.vscode
+migrations
+static
+media
+locale
+venv
+.env
+*.sqlite3
