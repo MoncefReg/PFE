@@ -29,7 +29,7 @@ class User(AbstractUser, SafeDeleteModel):
         verbose_name_plural = "Users"
 
     def __str__(self):
-        return f'{str(self.uid)} -  {str(self.email)}'
+        return f'{str(self.id)} -  {str(self.email)}'
 
 
 class Admin(SafeDeleteModel):
