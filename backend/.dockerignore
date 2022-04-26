@@ -1,0 +1,7 @@
+.git
+.gitignore
+.dockerignore
+.idea
+__migrations__
+venv
+.vscode
