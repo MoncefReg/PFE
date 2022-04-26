@@ -6,6 +6,7 @@ djangorestframework
 django-filter
 django-cors-headers
 drf-yasg
+django-allauth
 django-url-filter
 django-safedelete
 bcrypt
