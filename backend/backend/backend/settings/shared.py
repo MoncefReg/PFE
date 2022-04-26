@@ -23,7 +23,12 @@ INSTALLED_APPS = [
     'corsheaders',
     'safedelete',
     'rest_framework',
+    'rest_framework.authtoken',
     'drf_yasg',
+    'allauth',
+    'allauth.account',
+    'baseapp',
+    'authapp'
 ]
 
 MIDDLEWARE = [
@@ -94,6 +99,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -111,4 +117,15 @@ SWAGGER_SETTINGS = {
             'type': 'basic'
         }
     },
+}
+
+AUTH_USER_MODEL = "baseapp.User"
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'authapp.serializers.UserSerializer',
+    'TOKEN_SERIALIZER': 'authapp.serializers.TokenSerializer'
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "authapp.serializers.RegisterSerializer",
 }
