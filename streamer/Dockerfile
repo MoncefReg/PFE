@@ -6,4 +6,4 @@ COPY requirements.txt .
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-CMD [ "uvicorn", "app.main:app", "--host=0.0.0.0"]
+ENTRYPOINT ["./entrypoint.sh"]
