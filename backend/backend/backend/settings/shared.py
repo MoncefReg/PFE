@@ -28,7 +28,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'baseapp',
-    'authapp'
+    'authapp',
+    'recognitionapp',
+    'staff_management'
 ]
 
 MIDDLEWARE = [
