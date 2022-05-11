@@ -1,6 +1,0 @@
-DEBUG = True
-
-WIDTH = 640
-HEIGHT = 320
-
-HTTP_PORT = 8080

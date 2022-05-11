@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-fastapi_mqtt
-websockets
-aioredis
-python-dotenv
-opencv-python
-numpy
