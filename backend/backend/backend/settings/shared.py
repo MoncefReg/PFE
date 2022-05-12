@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'baseapp',
     'authapp',
     'recognitionapp',
-    'staff_management'
+    'staff_management',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

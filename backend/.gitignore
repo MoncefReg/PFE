@@ -8,3 +8,4 @@ locale
 venv
 .env
 *.sqlite3
+*.pkl

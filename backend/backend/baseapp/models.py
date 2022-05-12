@@ -1,7 +1,9 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.deconstruct import deconstructible
 from safedelete.models import SafeDeleteModel, HARD_DELETE, SOFT_DELETE_CASCADE
+import os
 
 
 class User(AbstractUser, SafeDeleteModel):
@@ -35,11 +37,13 @@ class User(AbstractUser, SafeDeleteModel):
 class Admin(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
-    uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    uid = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False)
     mobile = models.CharField(max_length=99)
     birthday = models.DateField(max_length=99)
     image = models.ImageField(upload_to='AdminsImages', blank=True, null=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="admin_instance")
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="admin_instance")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -48,3 +52,45 @@ class Admin(SafeDeleteModel):
 
     class Meta:
         verbose_name_plural = 'Admins'
+
+
+def Rename(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = '{}.{}'.format(instance.pk, ext)
+    path = os.path.join("employes_images", filename)
+    return path
+
+
+class Employee(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_CASCADE
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    first_name = models.CharField(max_length=99, blank=True, null=True)
+    last_name = models.CharField(max_length=99, blank=True, null=True)
+    image = models.ImageField(upload_to=Rename, null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.pk} - {self.first_name} {self.last_name}'
+
+    class Meta:
+        verbose_name_plural = 'Employees'
+
+
+class LogEvent(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_CASCADE
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    date = models.DateTimeField(auto_now_add=True)
+    employee = models.ForeignKey(Employee, null=True, blank=True, on_delete=models.SET_NULL)
+    image = models.ImageField(upload_to="log_events", null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.pk} - {self.date}'
+
+    class Meta:
+        verbose_name_plural = 'Log Events'

@@ -1,7 +1,7 @@
 Django
 gunicorn
 psycopg2-binary
-cryptography==2.8
+cryptography
 djangorestframework
 django-filter
 django-cors-headers
@@ -16,3 +16,5 @@ rest-framework-roles
 django-rest-swagger
 dj-rest-auth
 Pillow
+deepface
+django-cleanup
