@@ -1,7 +1,6 @@
 import base64
 import datetime
 
-import cv2
 import os
 from django.conf import settings
 from django.core.files.base import ContentFile
@@ -39,7 +38,6 @@ class LogView(APIView):
                 employee = None
                 try:
                     pk = get_id_from_image(results.iloc[0, :].identity)
-                    print(pk)
                     employee = Employee.objects.get(pk=pk).pk
                 except Employee.DoesNotExist:
                     pass
