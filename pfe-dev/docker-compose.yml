@@ -23,6 +23,16 @@ services:
       - ../backend/backend:/opt/backend
     networks:
       - backend
+  
+  face-detection-api:
+    image: pfe:/face_detection:1.0
+    restart: on-failure
+    ports:
+      - "8787:8787"
+    volumes:
+      - ../face_detection:/app
+    networks:
+      - backend
 
   postgres-db:
     image: postgres:14.1

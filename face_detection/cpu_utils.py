@@ -1,5 +1,6 @@
 import base64
 import cv2
+import numpy
 import requests
 
 faceDetect = cv2.CascadeClassifier('detector.xml')
@@ -13,14 +14,15 @@ def send_face_to_api(images):
     try:
         requests.post("http://127.0.0.1:8000/api/v1/staff/logs/",
                       json={"images": images_data})
-    except:
+    except Exception as e:
+        print(e)
         pass
 
 
 class Video(object):
     def __init__(self):
         print("[+] Connecting to camera please wait...")
-        self.video = cv2.VideoCapture("rtsp://10.135.90.175:8554/live.sdp")
+        self.video = cv2.VideoCapture("rtsp://raspberrypi:8544/ts")
         print("[+] Connected to camera")
 
     def __del__(self):
@@ -29,7 +31,6 @@ class Video(object):
 
     def get_frame(self):
         ret, frame = self.video.read()
-        # frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
         faces = faceDetect.detectMultiScale(frame, 1.3, 5)
         faces_images = []
         for x, y, w, h in faces:
@@ -38,5 +39,8 @@ class Video(object):
             ret_face, face_jpg = cv2.imencode(".jpeg", roi)
             if ret_face:
                 faces_images.append(face_jpg.tobytes())
-        ret, jpg = cv2.imencode('.jpg', frame)
+        if ret:
+            ret, jpg = cv2.imencode('.jpg', frame)
+        else:
+            ret, jpg = cv2.imencode(".jpg", numpy.zeros((800, 800)))
         return [jpg.tobytes(), faces_images]
