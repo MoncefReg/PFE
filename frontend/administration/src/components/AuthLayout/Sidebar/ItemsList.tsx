@@ -14,7 +14,8 @@ const RenderItems = ({ items }: RenderItemsProps) => (
   <List
     sx={{
       backgroundColor: 'background.paper',
-      px: 0
+      px: 0,
+      mt: { md: 10, xs: 5 }
     }}
   >
     {items.map((item) => (

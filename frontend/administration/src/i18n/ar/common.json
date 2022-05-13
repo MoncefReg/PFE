@@ -11,5 +11,13 @@
   "LANGUAGE_OPTIONS": {
     "ENGLISH": "",
     "ARABIC": ""
+  },
+  "SIDEBAR_ITEMS": {
+    "DASHBOARD": "الرئيسي",
+    "EMPLOYEES": "الطاقم",
+    "CLUSTERS": "المجموعات",
+    "DEVICES": "الأجهزة",
+    "LOG_HISTORY": "التسجيلات",
+    "WATCH_LIVE": "بث حي"
   }
 }

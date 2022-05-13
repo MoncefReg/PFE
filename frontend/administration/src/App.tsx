@@ -9,6 +9,7 @@ import './i18n/config';
 // Theme
 import { ThemeProvider } from '@mui/material/styles';
 import createTheme from './theme';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 // Components
 import FallbackScreen from './components/FallbackScreen';

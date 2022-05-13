@@ -11,5 +11,13 @@
   "LANGUAGE_OPTIONS": {
     "ENGLISH": "English",
     "ARABIC": "Arabic"
+  },
+  "SIDEBAR_ITEMS": {
+    "DASHBOARD": "Dashboard",
+    "EMPLOYEES": "Employees",
+    "CLUSTERS": "Clusters",
+    "DEVICES": "Devices",
+    "LOG_HISTORY": "Log history",
+    "WATCH_LIVE": "Watch"
   }
 }
