@@ -7,3 +7,5 @@ export const LANGUAGES = {
   ENGLISH: 'en',
   ARABIC: 'ar'
 };
+
+export const API_URL = 'http://localhost:8000';

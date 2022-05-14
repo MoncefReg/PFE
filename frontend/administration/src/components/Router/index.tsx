@@ -47,7 +47,7 @@ const renderRoute = (route: RouteType, index: number) => {
 
 const RoutesList: RouteType[] = [
   {
-    path: '/dashboard',
+    path: '/devices',
     component: lazy(() => import('src/components/FallbackScreen')),
     layout: AuthLayout
   },
