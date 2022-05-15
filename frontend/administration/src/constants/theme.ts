@@ -9,7 +9,7 @@ export const THEME_OPTIONS: {
 
 export const SIDEBAR_WIDTH = {
   collapsed: 60,
-  full: 256
+  full: 200
 };
 
 export const SETTINGS_DRAWER_WIDTH = 350;

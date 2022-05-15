@@ -11,5 +11,42 @@
   "LANGUAGE_OPTIONS": {
     "ENGLISH": "English",
     "ARABIC": "Arabic"
-  }
+  },
+  "SIDEBAR_ITEMS": {
+    "DASHBOARD": "Dashboard",
+    "EMPLOYEES": "Employees",
+    "CLUSTERS": "Clusters",
+    "DEVICES": "Devices",
+    "LOG_HISTORY": "Log history",
+    "WATCH_LIVE": "Watch"
+  },
+  "API_ERRORS": {
+    "INVALID_OR_EXPIRED_AUTH": "Invalid or expired authentication",
+    "UNKNOW_ERROR": "Unkwnown error",
+    "CONTENT_NOT_FOUND": "Content not found",
+    "INTERNAL_SERVER_ERROR": "Internal server error",
+    "BAD_REQUEST": "Bad request"
+  },
+  "TOTAL": "Total",
+  "SEARCH": "Search",
+  "SEARCH_PLACEHOLDER": "Search...",
+  "ACTIONS": "Actions",
+  "DEVICES": "Devices",
+  "CONFIRM_ACTION_TITLE": "Confirm Action",
+  "CONFIRM_ACTION_MESSAGE": "Do you confirm this action?",
+  "CONFIRM": "Confirm",
+  "ADD": "Add",
+  "UPDATE": "Update",
+  "DELETE": "Delete",
+  "CANCEL": "Cancel",
+  "CHANGES_SAVED_MESSAGE": "Changes saved successfully",
+  "LOAD_MORE": "Load more",
+  "CLUSTER": "Cluster",
+  "SUBMIT": "Submit",
+  "IP_ADDRESS": "IP address",
+  "PORT": "Port",
+  "USER": "User",
+  "PASSWORD": "Password",
+  "ACTIVE": "Active",
+  "CREATED_ON": "Creation date"
 }

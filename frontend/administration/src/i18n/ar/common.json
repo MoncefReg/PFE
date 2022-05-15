@@ -1,15 +1,52 @@
 {
-  "ACCOUNT": "",
-  "LOGOUT": "",
-  "SETTINGS": "",
-  "THEME": "",
-  "LANGUAGE": "",
+  "ACCOUNT": "الحساب",
+  "LOGOUT": "الخروج",
+  "SETTINGS": "الإعدادت",
+  "THEME": "الوضع",
+  "LANGUAGE": "اللغة",
   "THEME_OPTIONS": {
-    "DARK_THEME": "",
-    "LIGHT_THEME": ""
+    "DARK_THEME": "الوضع المظلم",
+    "LIGHT_THEME": "الوضع العادي"
   },
   "LANGUAGE_OPTIONS": {
-    "ENGLISH": "",
-    "ARABIC": ""
-  }
+    "ENGLISH": "الإنجليزية",
+    "ARABIC": "العربية"
+  },
+  "SIDEBAR_ITEMS": {
+    "DASHBOARD": "الرئيسي",
+    "EMPLOYEES": "الطاقم",
+    "CLUSTERS": "المجموعات",
+    "DEVICES": "الأجهزة",
+    "LOG_HISTORY": "التسجيلات",
+    "WATCH_LIVE": "بث حي"
+  },
+  "API_ERRORS": {
+    "INVALID_OR_EXPIRED_AUTH": "الترخيص أو معلومات التعريف غير صالحة",
+    "UNKNOW_ERROR": "خطأ غير معروف",
+    "CONTENT_NOT_FOUND": "لم يتم العثور على الموارد المطلوبة",
+    "INTERNAL_SERVER_ERROR": "خطأ داخلي في الخادم",
+    "BAD_REQUEST": "طلب خاطئ"
+  },
+  "TOTAL": "الإجمالي",
+  "SEARCH": "بحث",
+  "SEARCH_PLACEHOLDER": "بحث ...",
+  "ACTIONS": "العمليات",
+  "DEVICES": "الأجهزة",
+  "CONFIRM_ACTION_TITLE": "تأكيد العملية",
+  "CONFIRM_ACTION_MESSAGE": "هل تؤكد العملية؟",
+  "CONFIRM": "تأكيد",
+  "ADD": "إضافة",
+  "UPDATE": "تحديث",
+  "DELETE": "حذف",
+  "CANCEL": "إلغاء",
+  "CHANGES_SAVED_MESSAGE": "تم حفظ التغييرات بنجاح",
+  "LOAD_MORE": "تحميل المزيد",
+  "CLUSTER": "المجموعة",
+  "SUBMIT": "تأكيد",
+  "IP_ADDRESS": "عنوان IP",
+  "PORT": "المنفذ",
+  "USER": "المستخدم",
+  "PASSWORD": "كلمة السر",
+  "ACTIVE": "نشط",
+  "CREATED_ON": "تاريخ الإضافة"
 }

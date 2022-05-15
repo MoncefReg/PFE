@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.utils.deconstruct import deconstructible
 from safedelete.models import SafeDeleteModel, HARD_DELETE, SOFT_DELETE_CASCADE
 import os
 
@@ -94,3 +93,38 @@ class LogEvent(SafeDeleteModel):
 
     class Meta:
         verbose_name_plural = 'Log Events'
+
+
+class Cluster(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_CASCADE
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(null=True, blank=True, max_length=30)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.pk}'
+
+    class Meta:
+        verbose_name_plural = 'Clusters'
+
+
+class Node(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_CASCADE
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    cluster = models.ForeignKey(Cluster, related_name="nodes", null=True, blank=True, on_delete=models.SET_NULL)
+    ip_address = models.GenericIPAddressField()
+    port = models.CharField(max_length=5, blank=True, null=True)
+    user = models.CharField(max_length=99, blank=True, null=True)
+    password = models.CharField(max_length=99, blank=True, null=True)
+    active = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.pk}'
+
+    class Meta:
+        verbose_name_plural = 'Nodes'

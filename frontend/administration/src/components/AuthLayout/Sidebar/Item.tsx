@@ -37,13 +37,15 @@ const Root = styled(ListItem)<RootProps>(
     [`&.${classes.root}`]: {
       width: '100%',
       padding: 0,
-      minHeight: 32,
-      display: 'block'
+      height: 40,
+      display: 'block',
+      marginTop: 10,
+      marginBottom: 10
     },
     [`& .${classes.divider}`]: {
       borderRightWidth: 4,
-      height: 32,
-      marginRight: 7,
+      height: 40,
+      marginRight: 4,
       borderRightColor: theme.palette.primary.main,
       visibility: active ? 'visible' : 'hidden',
       borderRadius: 20
@@ -56,8 +58,7 @@ const Root = styled(ListItem)<RootProps>(
     },
     [`& .${classes.buttonContent}`]: {
       width: '100%',
-      height: '100%',
-      minHeight: 32,
+      height: 40,
       borderRadius: '4px',
       padding: `0px ${collapsed ? '5px' : '10px'}`,
       display: 'flex',
@@ -132,7 +133,7 @@ const Item = ({ text, icon: Icon, link }: ItemProps) => {
             </ListItemIcon>
             <ListItemText
               className={classes.text}
-              primary={<Typography>{text}</Typography>}
+              primary={<Typography variant="body2">{text}</Typography>}
             />
           </Box>
         </ListItemButton>

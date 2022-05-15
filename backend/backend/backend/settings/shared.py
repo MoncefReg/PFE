@@ -6,10 +6,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-fh52^t)0b@^k(4=meli692)q-6^je7^fvd6*=*p2*6pk^f-*23'
 
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 SITE_ID = 1
 
 INSTALLED_APPS = [
@@ -42,6 +38,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -111,7 +109,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated', ],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny', ],
+    'DEFAULT_PAGINATION_CLASS': 'backend.pagination.DefaultPagination',
 }
 
 SWAGGER_SETTINGS = {

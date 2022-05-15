@@ -14,6 +14,7 @@ import {
 import { Menu } from 'react-feather';
 import AccountDropdown from './AccountDropdown';
 import SettingsDrawer from './SettingsDrawer';
+import { SIDEBAR_WIDTH } from 'src/constants';
 
 // Others
 
@@ -28,7 +29,9 @@ const Root = styled(AppBar)<RootProps>(({ theme, sidebarcollpased }) => ({
   height: 60,
   padding: '0px 37px',
   transition: 'width 0.3s ease-out',
-  width: `calc(100% - ${sidebarcollpased ? '60px' : '255px'})`,
+  width: `calc(100% - ${
+    sidebarcollpased ? SIDEBAR_WIDTH.collapsed : SIDEBAR_WIDTH.full
+  }px)`,
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
