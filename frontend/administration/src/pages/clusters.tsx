@@ -10,7 +10,6 @@ import { AddCircle, Delete, Edit } from '@mui/icons-material';
 import {
   Box,
   Button,
-  Grid,
   IconButton,
   styled,
   SvgIcon,
@@ -21,24 +20,23 @@ import {
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import {
-  createDevice,
-  deleteDevice,
-  fetchDevices,
-  updateDevice
+  createCluster,
+  deleteCluster,
+  fetchClusters,
+  updateCluster
 } from 'src/redux/actions';
 
 // Components
 import DataGrid from 'src/components/DataGrid';
 import Modal from 'src/components/Modal';
-import NodeForm from 'src/components/NodeForm/Form';
-import CustomAutoComplete from 'src/components/Autocomplete';
+import ClusterForm from 'src/components/ClusterForm/Form';
 
 // Forms
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 // Others
-import { Cluster, Device, IHeaderCell } from 'src/models';
+import { Cluster, IHeaderCell } from 'src/models';
 import ApiEvent from 'src/utils/ApiEvent';
 import moment from 'moment';
 import { extractData, getDateFormat } from 'src/utils/helpers';
@@ -49,22 +47,21 @@ const Root = styled('div')(({ theme }) => ({
   flexDirection: 'column'
 }));
 
-const Devices = () => {
+const Clusters = () => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-  const DevicesReducer = useSelector((state: any) => state.Devices);
-  const deleteSuccess: ApiEvent = DevicesReducer.deleteSuccess;
-  const updateSuccess: ApiEvent = DevicesReducer.updateSuccess;
-  const createSuccess: ApiEvent = DevicesReducer.createSuccess;
+  const ClustersReducer = useSelector((state: any) => state.Clusters);
+  const deleteSuccess: ApiEvent = ClustersReducer.deleteSuccess;
+  const updateSuccess: ApiEvent = ClustersReducer.updateSuccess;
+  const createSuccess: ApiEvent = ClustersReducer.createSuccess;
   const error: ApiEvent<{ type: string; msgs: string[] }> =
-    DevicesReducer.error;
+    ClustersReducer.error;
   const { fullFormat } = getDateFormat();
 
   // States
   const [refresh, setRefresh] = useState(false);
   const [open, setOpen] = useState<any>(false);
-  const [cluster, setCluster] = useState<any>(null);
 
   const handleOpenDelete = (payload?: string) => {
     setOpen({ action: 'delete', payload });
@@ -74,7 +71,7 @@ const Devices = () => {
     setOpen({ action: 'create' });
   };
 
-  const handleOpenUpdate = (payload: Device) => {
+  const handleOpenUpdate = (payload: Cluster) => {
     setOpen({ action: 'update', payload });
   };
 
@@ -83,33 +80,29 @@ const Devices = () => {
   };
 
   const handleSubmitDelete = () => {
-    dispatch(deleteDevice(open.payload));
+    dispatch(deleteCluster(open.payload));
     setOpen(false);
   };
 
   const handleSubmitCreate = (payload: any) => {
-    dispatch(createDevice(payload));
+    dispatch(createCluster(payload));
   };
 
   const handleSubmitUpdate = (payload: any) => {
-    dispatch(updateDevice(payload));
+    dispatch(updateCluster(payload));
   };
 
   const headerItems: IHeaderCell[] = [
-    { text: t('IP_ADDRESS') },
-    { text: t('PORT') },
-    { text: t('CLUSTER') },
+    { text: t('NAME') },
     { text: t('CREATED_ON') }
   ];
 
   const bodyItems: any = [
-    { render: (item: Device) => item.ip_address },
-    { render: (item: Device) => item.port },
-    { render: (item: Device) => item.cluster_data?.name },
-    { render: (item: Device) => moment(item.created_on).format(fullFormat) }
+    { render: (item: Cluster) => item.name },
+    { render: (item: Cluster) => moment(item.created_on).format(fullFormat) }
   ];
 
-  const customActions = (item: Device) => (
+  const customActions = (item: Cluster) => (
     <>
       <Tooltip title={t('DELETE')}>
         <IconButton onClick={() => handleOpenDelete(item.id)}>
@@ -154,24 +147,13 @@ const Devices = () => {
 
   const CreateModal = () => (
     <Formik
-      initialValues={{
-        ip_address: '',
-        port: '',
-        user: '',
-        password: '',
-        cluster: undefined,
-        active: false
-      }}
+      initialValues={{ name: '' }}
       validationSchema={Yup.object().shape({
-        ip_address: Yup.string().required(),
-        port: Yup.number().min(1).max(65535).required().integer(),
-        password: Yup.string(),
-        user: Yup.string(),
-        cluster: Yup.mixed().required()
+        name: Yup.string().required()
       })}
-      onSubmit={(values: Device) => {
+      onSubmit={(values: Cluster) => {
         try {
-          handleSubmitCreate({ ...values, cluster: values.cluster?.id });
+          handleSubmitCreate({ ...values });
         } catch {
           //
         }
@@ -185,7 +167,7 @@ const Devices = () => {
           onSubmit={handleSubmit}
           submitText={t('SUBMIT')}
         >
-          <NodeForm />
+          <ClusterForm />
         </Modal>
       )}
     </Formik>
@@ -195,25 +177,15 @@ const Devices = () => {
     <Formik
       initialValues={{
         id: extractData(open.payload, ['id'], ''),
-        ip_address: extractData(open.payload, ['ip_address'], ''),
-        port: extractData(open.payload, ['port'], ''),
-        user: extractData(open.payload, ['user'], ''),
-        password: extractData(open.payload, ['password'], ''),
-        cluster: extractData(open.payload, ['cluster_data'], undefined),
-        active: extractData(open.payload, ['active'], false)
+        name: extractData(open.payload, ['name'], '')
       }}
       enableReinitialize
       validationSchema={Yup.object().shape({
-        ip_address: Yup.string().required(),
-        port: Yup.number().min(1).max(65535).required().integer(),
-        password: Yup.string().nullable(),
-        user: Yup.string().nullable(),
-        cluster: Yup.mixed().required(),
-        active: Yup.boolean().required()
+        name: Yup.string().required()
       })}
-      onSubmit={(values: Device) => {
+      onSubmit={(values: Cluster) => {
         try {
-          handleSubmitUpdate({ ...values, cluster: values.cluster?.id });
+          handleSubmitUpdate({ ...values });
         } catch {
           //
         }
@@ -227,7 +199,7 @@ const Devices = () => {
           onSubmit={handleSubmit}
           submitText={t('SUBMIT')}
         >
-          <NodeForm />
+          <ClusterForm />
         </Modal>
       )}
     </Formik>
@@ -271,50 +243,17 @@ const Devices = () => {
       <CreateModal />
       <UpdateModal />
       <DataGrid
-        title={t('DEVICES')}
-        fetchItems={fetchDevices}
-        reducer={DevicesReducer}
+        title={t('CLUSTERS')}
+        fetchItems={fetchClusters}
+        reducer={ClustersReducer}
         headerItems={headerItems}
         bodyItems={bodyItems}
         customActions={customActions}
         externalRefresh={refresh}
-        params={cluster ? { cluster: cluster.id } : {}}
         action={action}
-        filters={
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{ mt: 4 }}
-            justifyContent="flex-end"
-            alignItems="center"
-            display="flex"
-            flexDirection="row"
-          >
-            <CustomAutoComplete
-              url="devices/clusters/"
-              stringifyOption={(option: Cluster) => `${option.name}`}
-              onChange={(e, newValue) => {
-                setCluster(newValue);
-                setRefresh((state) => !state);
-              }}
-              autocompleteProps={{
-                isOptionEqualToValue: (option: any, value: any) =>
-                  option?.id === value?.id,
-                filterSelectedOptions: true,
-                value: cluster,
-                sx: { maxWidth: 350 }
-              }}
-              inputProps={{
-                label: t('CLUSTER'),
-                sx: { maxWidth: 350 }
-              }}
-            />
-          </Grid>
-        }
       />
     </Root>
   );
 };
 
-export default Devices;
+export default Clusters;

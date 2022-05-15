@@ -20,7 +20,7 @@ class NodeSerializer(serializers.ModelSerializer):
 
 
 class ClusterSerializer(serializers.ModelSerializer):
-    nodes = NodeSerializer(many=True)
+    nodes = NodeSerializer(many=True, read_only=True)
 
     class Meta:
         model = Cluster

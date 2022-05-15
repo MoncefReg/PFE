@@ -1,7 +1,8 @@
 export interface Cluster {
   id?: string;
   name: string;
-  nodes: Device[];
+  nodes?: Device[];
+  created_on?: string;
 }
 
 export interface Device {
