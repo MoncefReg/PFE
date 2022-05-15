@@ -107,7 +107,7 @@ class Cluster(SafeDeleteModel):
         return f'{self.pk}'
 
     class Meta:
-        verbose_name_plural = 'Log Events'
+        verbose_name_plural = 'Clusters'
 
 
 class Node(SafeDeleteModel):
@@ -127,4 +127,4 @@ class Node(SafeDeleteModel):
         return f'{self.pk}'
 
     class Meta:
-        verbose_name_plural = 'Log Events'
+        verbose_name_plural = 'Nodes'

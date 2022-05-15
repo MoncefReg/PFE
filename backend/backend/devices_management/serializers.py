@@ -16,7 +16,7 @@ class NodeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Node
-        exclude = ('deleted', 'created_on', 'updated_on')
+        exclude = ('deleted', 'updated_on')
 
 
 class ClusterSerializer(serializers.ModelSerializer):
@@ -24,4 +24,4 @@ class ClusterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cluster
-        exclude = ('deleted', 'created_on', 'updated_on')
+        exclude = ('deleted', 'updated_on')
