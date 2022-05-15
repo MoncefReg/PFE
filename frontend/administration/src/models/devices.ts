@@ -11,4 +11,5 @@ export interface Device {
   user?: string;
   password?: string;
   active: boolean;
+  created_on?: string;
 }

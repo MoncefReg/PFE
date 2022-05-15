@@ -4,3 +4,4 @@ export * from './Settings';
 export * from './Sidebar';
 export * from './API';
 export * from './devices';
+export * from './DataGrid';

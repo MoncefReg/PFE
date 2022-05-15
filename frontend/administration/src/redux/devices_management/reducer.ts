@@ -1,4 +1,5 @@
 import { Reducer } from 'react';
+import { Device } from 'src/models';
 import ApiEvent from 'src/utils/ApiEvent';
 import {
   CREATE_DEVICE,
@@ -15,12 +16,13 @@ import {
   UPDATE_DEVICE_SUCCESS
 } from './const';
 
-interface ReducerState {
+export interface DevicesReducerState {
   loading: boolean;
   error: any;
   createSuccess?: ApiEvent;
   updateSuccess?: ApiEvent;
   deleteSuccess?: ApiEvent;
+  data?: { count: number; results: Device[] };
 }
 
 const initState = {
@@ -28,7 +30,7 @@ const initState = {
   error: null
 };
 
-const DevicesManagementReducer: Reducer<ReducerState, any> = (
+const DevicesManagementReducer: Reducer<DevicesReducerState, any> = (
   state = initState,
   { type, payload }
 ) => {
@@ -45,21 +47,25 @@ const DevicesManagementReducer: Reducer<ReducerState, any> = (
     case FETCH_DEVICES_SUCCESS:
       return {
         ...state,
-        devices: payload
+        loading: false,
+        data: payload
       };
     case CREATE_DEVICE_SUCCESS:
       return {
         ...state,
+        loading: false,
         createSuccess: payload
       };
     case UPDATE_DEVICE_SUCCESS:
       return {
         ...state,
+        loading: false,
         updateSuccess: payload
       };
     case DELETE_DEVICE_SUCCESS:
       return {
         ...state,
+        loading: false,
         deleteSuccess: payload
       };
 

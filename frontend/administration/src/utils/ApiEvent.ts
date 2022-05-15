@@ -16,8 +16,11 @@ class ApiEvent<T = any> {
   }
 
   getContent() {
-    this.handled = true;
     return this.content;
+  }
+
+  getContentIfNotHandled() {
+    return this.handled ? false : this.content;
   }
 }
 

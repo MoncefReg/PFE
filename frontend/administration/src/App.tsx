@@ -14,6 +14,7 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 // Components
 import FallbackScreen from './components/FallbackScreen';
 import { useCookies } from 'react-cookie';
+import { SnackbarProvider } from 'notistack';
 
 function App() {
   const [cookies] = useCookies(['theme']);
@@ -22,9 +23,17 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Suspense fallback={<FallbackScreen />}>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+        <SnackbarProvider
+          dense
+          preventDuplicate
+          maxSnack={3}
+          autoHideDuration={4000}
+          style={{ marginBottom: 10 }}
+        >
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </SnackbarProvider>
       </Suspense>
     </ThemeProvider>
   );
