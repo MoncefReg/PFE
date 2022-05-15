@@ -64,9 +64,10 @@ class Employee(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-
     first_name = models.CharField(max_length=99, blank=True, null=True)
     last_name = models.CharField(max_length=99, blank=True, null=True)
+    mobile = models.CharField(max_length=99, blank=True, null=True)
+    email = models.EmailField(max_length=99, blank=True, null=True)
     image = models.ImageField(upload_to=Rename, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

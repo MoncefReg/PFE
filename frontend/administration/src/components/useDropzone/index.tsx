@@ -7,7 +7,10 @@ import FileCard from './File';
 
 const Files = ({
   maxFiles = 1,
-  accept = 'image/jpeg, image/png',
+  accept = {
+    'image/jpeg': ['.jpeg', '.png', 'jpg'],
+    'image/png': ['.jpeg', '.png', 'jpg']
+  },
   showCards = false
 }) => {
   const [FilesZone, files, setFiles] = FilesDropzone(maxFiles, accept);

@@ -99,9 +99,6 @@ const DropZone = (maxFiles: number, accept: any) => {
       >
         <input {...getInputProps()} hidden />
         <div>
-          <img alt="..." width={130} src="/static/dropzone-files-icon.svg" />
-        </div>
-        <div>
           <Typography gutterBottom variant="h3">
             {t('SELECT_FILES')}
           </Typography>
