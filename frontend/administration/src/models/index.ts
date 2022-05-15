@@ -5,3 +5,4 @@ export * from './Sidebar';
 export * from './API';
 export * from './devices';
 export * from './DataGrid';
+export * from './staff';

@@ -42,11 +42,20 @@
   "CHANGES_SAVED_MESSAGE": "Changes saved successfully",
   "LOAD_MORE": "Load more",
   "CLUSTER": "Cluster",
+  "CLUSTERS": "Clusters",
   "SUBMIT": "Submit",
   "IP_ADDRESS": "IP address",
   "PORT": "Port",
   "USER": "User",
   "PASSWORD": "Password",
   "ACTIVE": "Active",
-  "CREATED_ON": "Creation date"
+  "CREATED_ON": "Creation date",
+  "SELECT_FILES": "Select files",
+  "DROP_OR_CLICK_MESSAGE": "Drop image here or click to browse images",
+  "REMOVE_ALL": "Remove all",
+  "FIRST_NAME": "First name",
+  "LAST_NAME": "Last name",
+  "EMAIL": "Email",
+  "MOBILE": "Mobile",
+  "EMPLOYEES": "Employees"
 }

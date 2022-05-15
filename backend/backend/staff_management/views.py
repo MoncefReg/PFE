@@ -4,14 +4,16 @@ import datetime
 import os
 from django.conf import settings
 from django.core.files.base import ContentFile
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
 from deepface import DeepFace
 
 from baseapp.models import Employee
-from staff_management.serializers import LogSerializer
+from staff_management.serializers import LogSerializer, EmployeeSerializer
 
 
 def get_id_from_image(path: str):
@@ -51,3 +53,11 @@ class LogView(APIView):
             else:
                 print("Errors happened")
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class EmployeesViewSet(ModelViewSet):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('first_name', 'last_name', 'mobile', 'email')
+    ordering_fields = ('created_on',)

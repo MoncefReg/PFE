@@ -42,11 +42,20 @@
   "CHANGES_SAVED_MESSAGE": "تم حفظ التغييرات بنجاح",
   "LOAD_MORE": "تحميل المزيد",
   "CLUSTER": "المجموعة",
+  "CLUSTERS": "",
   "SUBMIT": "تأكيد",
   "IP_ADDRESS": "عنوان IP",
   "PORT": "المنفذ",
   "USER": "المستخدم",
   "PASSWORD": "كلمة السر",
   "ACTIVE": "نشط",
-  "CREATED_ON": "تاريخ الإضافة"
+  "CREATED_ON": "تاريخ الإضافة",
+  "SELECT_FILES": "اختيار الملف",
+  "DROP_OR_CLICK_MESSAGE": "اسحب ملفا هنا أو قم بالنقر لفتح متصفح الملفات",
+  "REMOVE_ALL": "حذف الكل",
+  "FIRST_NAME": "الإسم",
+  "LAST_NAME": "اللقب",
+  "EMAIL": "البريد الإلكتروني",
+  "MOBILE": "الهاتف",
+  "EMPLOYEES": "الطاقم"
 }
