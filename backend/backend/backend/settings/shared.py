@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'authapp',
     'recognitionapp',
     'staff_management',
+    'devices_management',
     'django_cleanup.apps.CleanupConfig',
 ]
 

@@ -17,5 +17,6 @@ class NodesViewSet(ModelViewSet):
 class ClustersViewSet(ModelViewSet):
     queryset = Cluster.objects.all()
     serializer_class = ClusterSerializer
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ('id', 'name')
+    ordering_fields = ('created_on',)
