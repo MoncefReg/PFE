@@ -1,4 +1,5 @@
 import i18next from 'i18next';
+import moment from 'moment';
 import {
   ARABIC_DATE_FORMAT,
   ARABIC_DATE_FORMAT_HELPER,
@@ -49,3 +50,19 @@ export function getDateFormat() {
     datetimehelper
   };
 }
+
+export const extractData = (
+  item: any = {},
+  fields: string[] = [],
+  defaultValue: any,
+  isDate: boolean | undefined = false
+) => {
+  let value = item || defaultValue;
+
+  if (item) {
+    fields.forEach((field) => {
+      value = value[field];
+    });
+  }
+  return isDate ? moment(value) : value;
+};

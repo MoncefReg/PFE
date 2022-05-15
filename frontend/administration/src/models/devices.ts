@@ -12,4 +12,6 @@ export interface Device {
   password?: string;
   active: boolean;
   created_on?: string;
+  cluster?: Cluster;
+  cluster_data?: Cluster;
 }
