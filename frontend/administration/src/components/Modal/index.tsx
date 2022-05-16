@@ -15,15 +15,12 @@ import {
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
-// Others
-import PropTypes from 'prop-types';
-
 interface Props {
   children: JSX.Element;
   isOpen: boolean;
   onClose: () => void;
   onSubmit?: (...params: any) => void;
-  title: string;
+  title?: string;
   submitText?: string;
   cancelText?: string;
 }
@@ -33,7 +30,7 @@ const BaseModal = ({
   isOpen,
   onClose,
   onSubmit,
-  title,
+  title = '',
   submitText,
   cancelText
 }: Props) => {
@@ -73,7 +70,7 @@ const BaseModal = ({
                   flexDirection="row"
                   justifyContent="flex-end"
                 >
-                  <Button onClick={onSubmit}>{submitText}</Button>
+                  {onSubmit && <Button onClick={onSubmit}>{submitText}</Button>}
                   <Button onClick={onClose}>{cancelText}</Button>
                 </Box>
               </Stack>
@@ -83,17 +80,6 @@ const BaseModal = ({
       </Box>
     </Modal>
   );
-};
-
-BaseModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  title: PropTypes.string
-};
-
-BaseModal.defaultProps = {
-  title: ''
 };
 
 export default React.memo(BaseModal);
