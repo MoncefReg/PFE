@@ -3,9 +3,11 @@ import { Cluster } from 'src/models';
 import ApiEvent from 'src/utils/ApiEvent';
 import fetcher from 'src/utils/fetcher';
 import handleFailures from 'src/utils/handleFailures';
+import { updateClustersFailed } from '../actions';
 import {
   createClusterFailed,
   createClusterSuccess,
+  deleteClusterFailed,
   deleteClusterSuccess,
   fetchClustersFailed,
   fetchClustersSuccess,
@@ -41,7 +43,7 @@ function* updateItem({ payload: data }: { payload: Cluster }): Generator<any> {
     yield fetcher.put(`/devices/clusters/${data.id}/`, data);
     yield put(updateClusterSuccess(new ApiEvent({})));
   } catch (error: any) {
-    yield put(handleFailures(error.response, createClusterFailed));
+    yield put(handleFailures(error.response, updateClustersFailed));
   }
 }
 
@@ -50,7 +52,7 @@ function* deleteItem({ payload: id }: { payload: any }): Generator<any> {
     yield fetcher.delete(`/devices/clusters/${id}/`);
     yield put(deleteClusterSuccess(new ApiEvent({})));
   } catch (error: any) {
-    yield put(handleFailures(error.response, createClusterFailed));
+    yield put(handleFailures(error.response, deleteClusterFailed));
   }
 }
 

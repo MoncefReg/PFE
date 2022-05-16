@@ -57,5 +57,12 @@
   "LAST_NAME": "اللقب",
   "EMAIL": "البريد الإلكتروني",
   "MOBILE": "الهاتف",
-  "EMPLOYEES": "الطاقم"
+  "EMPLOYEES": "الطاقم",
+  "LOGS_EVENTS": "سجلات الدخول",
+  "DATE": "التاريخ",
+  "MORE": "المزيد",
+  "LOG": "سجل",
+  "LOGS": "سجلات",
+  "CLOSE": "غلق",
+  "UNKNOWN_PERSON": "غير معروف"
 }

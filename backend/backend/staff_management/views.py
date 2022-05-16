@@ -8,11 +8,12 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.permissions import AllowAny
+from rest_framework import mixins
 from deepface import DeepFace
 
-from baseapp.models import Employee
+from baseapp.models import Employee, LogEvent
 from staff_management.serializers import LogSerializer, EmployeeSerializer
 
 
@@ -60,4 +61,15 @@ class EmployeesViewSet(ModelViewSet):
     serializer_class = EmployeeSerializer
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ('first_name', 'last_name', 'mobile', 'email')
+    ordering_fields = ('created_on',)
+
+
+class LogEventViewSet(GenericViewSet,
+                      mixins.ListModelMixin,
+                      mixins.RetrieveModelMixin,
+                      mixins.UpdateModelMixin):
+    queryset = LogEvent.objects.all()
+    serializer_class = LogSerializer
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('employee__first_name', 'employee__last_name')
     ordering_fields = ('created_on',)

@@ -5,9 +5,11 @@ import handleFailures from 'src/utils/handleFailures';
 import {
   createEmployeeFailed,
   createEmployeeSuccess,
+  deleteEmployeeFailed,
   deleteEmployeeSuccess,
   fetchEmployeesFailed,
   fetchEmployeesSuccess,
+  updateEmployeesFailed,
   updateEmployeeSuccess
 } from './actions';
 import {
@@ -56,7 +58,7 @@ function* updateItem({ payload: data }: any): Generator<any> {
     });
     yield put(updateEmployeeSuccess(new ApiEvent({})));
   } catch (error: any) {
-    yield put(handleFailures(error.response, createEmployeeFailed));
+    yield put(handleFailures(error.response, updateEmployeesFailed));
   }
 }
 
@@ -65,7 +67,7 @@ function* deleteItem({ payload: id }: { payload: any }): Generator<any> {
     yield fetcher.delete(`/staff/employees/${id}/`);
     yield put(deleteEmployeeSuccess(new ApiEvent({})));
   } catch (error: any) {
-    yield put(handleFailures(error.response, createEmployeeFailed));
+    yield put(handleFailures(error.response, deleteEmployeeFailed));
   }
 }
 

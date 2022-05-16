@@ -57,5 +57,12 @@
   "LAST_NAME": "Last name",
   "EMAIL": "Email",
   "MOBILE": "Mobile",
-  "EMPLOYEES": "Employees"
+  "EMPLOYEES": "Employees",
+  "LOGS_EVENTS": "Log events",
+  "DATE": "Date",
+  "MORE": "More",
+  "LOG": "Log",
+  "LOGS": "Logs",
+  "CLOSE": "Close",
+  "UNKNOWN_PERSON": "Uknown person"
 }

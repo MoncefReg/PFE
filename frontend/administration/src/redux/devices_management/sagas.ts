@@ -6,9 +6,11 @@ import handleFailures from 'src/utils/handleFailures';
 import {
   createDeviceFailed,
   createDeviceSuccess,
+  deleteDeviceFailed,
   deleteDeviceSuccess,
   fetchDevicesFailed,
   fetchDevicesSuccess,
+  updateDevicesFailed,
   updateDeviceSuccess
 } from './actions';
 import {
@@ -41,7 +43,7 @@ function* updateItem({ payload: data }: { payload: Device }): Generator<any> {
     yield fetcher.put(`/devices/nodes/${data.id}/`, data);
     yield put(updateDeviceSuccess(new ApiEvent({})));
   } catch (error: any) {
-    yield put(handleFailures(error.response, createDeviceFailed));
+    yield put(handleFailures(error.response, updateDevicesFailed));
   }
 }
 
@@ -50,7 +52,7 @@ function* deleteItem({ payload: id }: { payload: any }): Generator<any> {
     yield fetcher.delete(`/devices/nodes/${id}/`);
     yield put(deleteDeviceSuccess(new ApiEvent({})));
   } catch (error: any) {
-    yield put(handleFailures(error.response, createDeviceFailed));
+    yield put(handleFailures(error.response, deleteDeviceFailed));
   }
 }
 
