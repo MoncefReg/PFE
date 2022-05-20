@@ -1,55 +1,70 @@
 const typography = {
-  fontFamily: 'Noto Sans HK',
-  h1: {
-    fontWeight: 500,
-    fontSize: 42,
-    lineHeight: '60px'
+  button: {
+    fontWeight: 600
   },
-  h2: {
-    fontWeight: 500,
-    fontSize: 29
-  },
-  h3: {
-    fontWeight: 500,
-    fontSize: 24
-  },
-  h4: {
-    fontWeight: 500,
-    fontSize: 20
-  },
-  h5: {
-    fontWeight: 400,
-    fontSize: 17,
-    lineHeight: '22px'
-  },
-  h6: {
-    fontWeight: 400,
-    fontSize: 15,
-    lineHeight: '20px'
-  },
+  fontFamily:
+    '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
   body1: {
-    fontWeight: 500,
-    fontSize: 17,
-    lineHeight: '22px',
-    fontFamily: 'Noto Sans HK'
+    fontSize: '1rem',
+    fontWeight: 400,
+    lineHeight: 1.5
   },
   body2: {
-    fontWeight: 500,
-    fontSize: 15,
-    lineHeight: '20px',
-    fontFamily: 'Noto Sans HK'
+    fontSize: '0.875rem',
+    fontWeight: 400,
+    lineHeight: 1.57
   },
   subtitle1: {
-    fontWeight: 300,
-    fontSize: 13,
-    lineHeight: '11px',
-    fontFamily: 'Noto Sans HK'
+    fontSize: '1rem',
+    fontWeight: 500,
+    lineHeight: 1.75
   },
   subtitle2: {
-    fontWeight: 300,
-    fontSize: 12,
-    lineHeight: '12px',
-    fontFamily: 'Noto Sans HK'
+    fontSize: '0.875rem',
+    fontWeight: 500,
+    lineHeight: 1.57
+  },
+  overline: {
+    fontSize: '0.75rem',
+    fontWeight: 600,
+    letterSpacing: '0.5px',
+    lineHeight: 2.5,
+    textTransform: 'uppercase'
+  },
+  caption: {
+    fontSize: '0.75rem',
+    fontWeight: 400,
+    lineHeight: 1.66
+  },
+  h1: {
+    fontWeight: 700,
+    fontSize: '3.5rem',
+    lineHeight: 1.375
+  },
+  h2: {
+    fontWeight: 700,
+    fontSize: '3rem',
+    lineHeight: 1.375
+  },
+  h3: {
+    fontWeight: 700,
+    fontSize: '2.25rem',
+    lineHeight: 1.375
+  },
+  h4: {
+    fontWeight: 700,
+    fontSize: '2rem',
+    lineHeight: 1.375
+  },
+  h5: {
+    fontWeight: 600,
+    fontSize: '1.5rem',
+    lineHeight: 1.375
+  },
+  h6: {
+    fontWeight: 600,
+    fontSize: '1.125rem',
+    lineHeight: 1.375
   }
 };
 

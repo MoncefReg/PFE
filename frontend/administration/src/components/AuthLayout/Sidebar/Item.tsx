@@ -46,7 +46,7 @@ const Root = styled(ListItem)<RootProps>(
       borderRightWidth: 4,
       height: 40,
       marginRight: 4,
-      borderRightColor: theme.palette.primary.main,
+      borderRightColor: theme.palette.secondary.main,
       visibility: active ? 'visible' : 'hidden',
       borderRadius: 20
     },
@@ -65,10 +65,10 @@ const Root = styled(ListItem)<RootProps>(
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      color: active ? theme.palette.primary.main : theme.palette.text.primary,
+      color: active ? theme.palette.secondary.main : theme.palette.text.primary,
       '&:hover': {
         background: theme.palette.action.hover,
-        color: theme.palette.primary.main
+        color: theme.palette.secondary.main
       }
     },
     [`& .${classes.contentWrapper}`]: {
@@ -78,7 +78,7 @@ const Root = styled(ListItem)<RootProps>(
       alignItem: 'center',
       '&:hover': {
         [`& .${classes.icon}`]: {
-          color: theme.palette.primary.main
+          color: theme.palette.secondary.main
         }
       }
     },
