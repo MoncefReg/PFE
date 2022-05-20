@@ -64,5 +64,6 @@
   "LOG": "Log",
   "LOGS": "Logs",
   "CLOSE": "Close",
-  "UNKNOWN_PERSON": "Uknown person"
+  "UNKNOWN_PERSON": "Uknown person",
+  "WATCH": "Watch"
 }

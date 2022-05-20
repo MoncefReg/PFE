@@ -1,5 +1,5 @@
 from threading import Timer
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 from cpu_utils import Video as VideoCPU, send_face_to_api
 # from cuda_utils import Video as VideoCUDA
 
@@ -8,7 +8,21 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    ip = request.args.get("ip", None)
+    port = request.args.get("port", None)
+    user = request.args.get("user", None)
+    password = request.args.get("password", None)
+    queryString: str = "?"
+    if ip:
+        queryString += f'ip={ip}'
+    if port:
+        queryString += f'&port={port}'
+    if user:
+        queryString += f'&user={user}'
+    if password:
+        queryString += f'&password={password}'
+
+    return render_template('index.html', data=queryString)
 
 
 class Generator:
@@ -37,8 +51,13 @@ class Generator:
 
 @app.route('/video')
 def video():
+    ip = request.args.get("ip", None)
+    port = request.args.get("port", None)
+    user = request.args.get("user", None)
+    password = request.args.get("password", None)
+
     generator = Generator()
-    return Response(generator.generate(VideoCPU()),
+    return Response(generator.generate(VideoCPU(ip, port, user, password)),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 

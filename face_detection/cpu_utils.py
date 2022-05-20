@@ -12,7 +12,7 @@ def send_face_to_api(images):
         images_data.append("data:image/jpeg;base64, " +
                            base64.b64encode(image).decode("utf-8"))
     try:
-        req = requests.post("http://127.0.0.1:8000/api/v1/staff/logs/",
+        req = requests.post("http://127.0.0.1:8000/api/v1/staff/mark-log/",
                             json={"images": images_data})
     except Exception as e:
         print(e)
@@ -20,9 +20,18 @@ def send_face_to_api(images):
 
 
 class Video(object):
-    def __init__(self):
+    def __init__(self, ip: str, port, user: str, password: str):
         print("[+] Connecting to camera please wait...")
-        self.video = cv2.VideoCapture("rtsp://192.168.1.2:8554/live.sdp")
+        url = "rtsp://"
+        creds = None
+        location = f'{ip}:{port}'
+        if user and password:
+            creds = f'{user}@{password}:'
+        if creds:
+            url += creds
+        url += location + "/live.sdp"
+        print(url)
+        self.video = cv2.VideoCapture(url)
         print("[+] Connected to camera")
 
     def __del__(self):

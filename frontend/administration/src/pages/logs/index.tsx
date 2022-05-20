@@ -78,7 +78,10 @@ const Logs = () => {
     dispatch(updateLog(payload));
   };
 
-  const headerItems: IHeaderCell[] = [{ text: t('LOG') }, { text: t('DATE') }];
+  const headerItems: IHeaderCell[] = [
+    { text: t('LOG') },
+    { text: t('DATE'), sortKey: 'created_on' }
+  ];
 
   const bodyItems: any = [
     {
