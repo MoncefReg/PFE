@@ -12,7 +12,15 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
-import { Menu as MenuIcon } from 'react-feather';
+import {
+  Book,
+  Camera,
+  Home,
+  Menu as MenuIcon,
+  Server,
+  User,
+  Video
+} from 'react-feather';
 
 // Components
 // import { ReactComponent as Logo } from 'src/assets/images/Logo.svg';
@@ -63,27 +71,33 @@ const Sidebar = () => {
     () => [
       {
         link: '/dashboard',
-        text: t('SIDEBAR_ITEMS.DASHBOARD')
+        text: t('SIDEBAR_ITEMS.DASHBOARD'),
+        icon: Home
       },
       {
         link: '/employees',
-        text: t('SIDEBAR_ITEMS.EMPLOYEES')
+        text: t('SIDEBAR_ITEMS.EMPLOYEES'),
+        icon: User
       },
       {
         link: '/clusters',
-        text: t('SIDEBAR_ITEMS.CLUSTERS')
+        text: t('SIDEBAR_ITEMS.CLUSTERS'),
+        icon: Server
       },
       {
         link: '/devices',
-        text: t('SIDEBAR_ITEMS.DEVICES')
+        text: t('SIDEBAR_ITEMS.DEVICES'),
+        icon: Camera
       },
       {
         link: '/history',
-        text: t('SIDEBAR_ITEMS.LOG_HISTORY')
+        text: t('SIDEBAR_ITEMS.LOG_HISTORY'),
+        icon: Book
       },
       {
         link: '/watch',
-        text: t('SIDEBAR_ITEMS.WATCH_LIVE')
+        text: t('SIDEBAR_ITEMS.WATCH_LIVE'),
+        icon: Video
       }
     ],
     [t]
@@ -117,6 +131,14 @@ const Sidebar = () => {
       open
       variant="permanent"
       anchor="left"
+      className={classes.root}
+      PaperProps={{
+        sx: {
+          backgroundColor: '#272740',
+          borderRadius: 0,
+          // borderRight: 'none'
+        }
+      }}
     >
       {sidebarContent(false)}
     </Root>
@@ -126,6 +148,14 @@ const Sidebar = () => {
       open={sidebarcollpased}
       variant="temporary"
       anchor="left"
+      className={classes.root}
+      PaperProps={{
+        sx: {
+          backgroundColor: '#1d1f33',
+          borderRadius: 0,
+          // borderRight: 'none'
+        }
+      }}
     >
       {sidebarContent(true)}
     </Root>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 // UI
-import { Grid } from '@mui/material';
+import { Divider, Grid } from '@mui/material';
 
 // Redux
 import { useDispatch } from 'react-redux';
@@ -37,7 +37,13 @@ const WatchStreams = () => {
           cluster={cluster}
         />
       </Grid>
-      <Grid item xs={12} lg={7}>
+      <Grid item xs={0} lg={0.2}>
+        <Divider
+          orientation="vertical"
+          sx={{ minHeight: 'calc(100vh - 60px)' }}
+        />
+      </Grid>
+      <Grid item xs={12} lg={6.8}>
         <StreamsList cluster={cluster} />
       </Grid>
     </Grid>

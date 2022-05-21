@@ -38,7 +38,7 @@ const ClustersList = ({ handleSelectCluster, cluster }: Props) => {
 
   return (
     <Stack p={2} spacing={4}>
-      <Typography color="white" variant="h3">
+      <Typography color="text.primary" variant="h3">
         {t('WATCH')}
       </Typography>
       <TextField

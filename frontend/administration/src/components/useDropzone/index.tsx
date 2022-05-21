@@ -1,5 +1,5 @@
 // UI
-import { Box, Grid, Paper } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 // Others
 import FilesDropzone from './Dropzone';
@@ -17,22 +17,20 @@ const Files = ({
 
   const markup = (
     <div>
-      <Paper sx={{ p: 2 }} elevation={24}>
-        <>
-          {FilesZone}
-          {showCards && (
-            <Box mt={3}>
-              <Grid container spacing={3}>
-                {(files as any[]).map((file) => (
-                  <Grid item key={file.id} lg={4} md={4} sm={6} xs={12}>
-                    <FileCard file={file} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-          )}
-        </>
-      </Paper>
+      <>
+        {FilesZone}
+        {showCards && (
+          <Box mt={3}>
+            <Grid container spacing={3}>
+              {(files as any[]).map((file) => (
+                <Grid item key={file.id} lg={4} md={4} sm={6} xs={12}>
+                  <FileCard file={file} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        )}
+      </>
     </div>
   );
 

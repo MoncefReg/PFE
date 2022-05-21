@@ -27,7 +27,7 @@ const Root = styled('div')<ThemeProps>(({ theme, sidebarcollapsed }) => ({
       ? SIDEBAR_WIDTH.collapsed
       : SIDEBAR_WIDTH.full,
     paddingTop: 60,
-    paddingBottom: 60,
+    paddingBottom: 0,
     transition: 'padding .3s ease-out',
     [theme.breakpoints.down('lg')]: {
       paddingLeft: 0

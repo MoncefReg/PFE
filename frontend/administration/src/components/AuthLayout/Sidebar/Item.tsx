@@ -65,7 +65,7 @@ const Root = styled(ListItem)<RootProps>(
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      color: active ? theme.palette.secondary.main : theme.palette.text.primary,
+      color: active ? theme.palette.secondary.main : '#d1d5db',
       '&:hover': {
         background: theme.palette.action.hover,
         color: theme.palette.secondary.main
@@ -86,7 +86,7 @@ const Root = styled(ListItem)<RootProps>(
       textAlign: 'left'
     },
     [`& .${classes.icon}`]: {
-      color: active ? theme.palette.primary.main : theme.palette.text.primary,
+      color: active ? theme.palette.secondary.main : '#d1d5db',
       marginRight: collapsed ? 'auto' : '16px',
       marginLeft: collapsed ? 'auto' : 0,
       minWidth: 20

@@ -136,7 +136,7 @@ const DataGrid = ({
   return (
     <Container
       sx={{
-        marginTop: { lg: 10, xs: 5 },
+        marginTop: { lg: 5, xs: 3 },
         paddingX: { xs: '15px !important', md: '30px !important' }
       }}
       maxWidth={false}
@@ -165,6 +165,10 @@ const DataGrid = ({
           xs={12}
           md={6}
           sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
             mt: { xs: 4, md: 0 }
           }}
         >

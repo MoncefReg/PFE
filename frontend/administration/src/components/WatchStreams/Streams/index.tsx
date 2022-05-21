@@ -9,7 +9,8 @@ interface Props {
 const Wrapper = styled('div')(({ theme }) => ({
   height: 500,
   width: '100%',
-  boxShadow: theme.shadows[24],
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: theme.shadows[10],
   borderRadius: theme.spacing(2),
   position: 'relative'
 }));
@@ -46,7 +47,7 @@ const StreamsList = ({ cluster }: Props) => {
   };
   return (
     <Box p={2}>
-      <Typography variant="h3" color="white" mb={4}>
+      <Typography variant="h3" color="text.primary" mb={4}>
         {cluster?.name}
       </Typography>
       <div>

@@ -23,9 +23,10 @@ interface RootProps extends AppBarProps {
 }
 
 const Root = styled(AppBar)<RootProps>(({ theme, sidebarcollpased }) => ({
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.background.default,
+  borderRadius: 0,
   boxShadow: 'none',
-  borderBottom: `none`,
+  // borderBottom: `1px solid ${theme.palette.divider}`,
   height: 60,
   padding: '0px 37px',
   transition: 'width 0.3s ease-out',

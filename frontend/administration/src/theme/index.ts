@@ -69,6 +69,7 @@ const themeOptions = [
       MuiPaper: {
         styleOverrides: {
           root: {
+            backgroundImage: 'none',
             borderRadius: baseRadius
           }
         }
@@ -169,6 +170,7 @@ const themeOptions = [
       MuiPaper: {
         styleOverrides: {
           root: {
+            backgroundImage: 'none',
             borderRadius: baseRadius
           }
         }
@@ -214,8 +216,10 @@ const themeOptions = [
         main: '#10B981'
       },
       background: {
-        default: '#0B0F19',
-        paper: '#111827'
+        default: '#1d1f33',
+        paper: '#272740'
+        // default: '#0B0F19',
+        // paper: '#111827'
       },
       divider: '#2D3748',
       error: {

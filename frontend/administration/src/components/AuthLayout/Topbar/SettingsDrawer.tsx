@@ -80,6 +80,7 @@ const SettingsDrawer = () => {
         open={isOpen}
         variant="temporary"
         anchor="right"
+        PaperProps={{ sx: { borderRadius: 0 } }}
       >
         <div className={classes.container}>
           <Stack

@@ -1,5 +1,7 @@
+import React from 'react';
+
 export interface SidebarItem {
   text: string;
   link: string;
-  icon?: JSX.Element;
+  icon?: React.FC<any>;
 }

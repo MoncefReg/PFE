@@ -23,14 +23,15 @@ const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
   border: 'none'
 }));
 
-const StyledBodyCell = styled(TableCell)(() => ({
+const StyledBodyCell = styled(TableCell)(({ theme }) => ({
   border: 'none',
   ':first-of-type': {
     borderRadius: '20px 0 0 20px'
   },
   ':last-child': {
     borderRadius: '0 20px 20px 0'
-  }
+  },
+  padding: `${theme.spacing(1)} ${theme.spacing(2)}`
 }));
 
 interface Props {
@@ -111,7 +112,7 @@ const DataTable = ({
               key={item.id}
               sx={{
                 backgroundColor: 'background.paper',
-                boxShadow: (theme) => theme.shadows[16],
+                boxShadow: (theme) => theme.shadows[10],
                 borderRadius: '20px'
               }}
             >
