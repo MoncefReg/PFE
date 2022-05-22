@@ -65,7 +65,7 @@ const DataTable = ({
   t
 }: Props) => {
   return (
-    <Box mt={2} pb={12}>
+    <Box pb={12}>
       <Table
         sx={{
           borderCollapse: 'separate',

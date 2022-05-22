@@ -153,7 +153,7 @@ const DataGrid = ({
             mt: { xs: 4, md: 0 }
           }}
         >
-          <Typography variant="h2" color="text.primary">
+          <Typography variant="h3" color="text.primary">
             {title}
           </Typography>
           <Typography variant="h5" color="text.secondary" sx={{ ml: 1 }}>

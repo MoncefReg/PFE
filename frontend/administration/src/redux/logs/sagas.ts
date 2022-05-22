@@ -5,12 +5,14 @@ import handleFailures from 'src/utils/handleFailures';
 import {
   deleteLogFailed,
   deleteLogSuccess,
+  fetchLogFailed,
   fetchLogsFailed,
   fetchLogsSuccess,
+  fetchLogSuccess,
   updateLogsFailed,
   updateLogSuccess
 } from './actions';
-import { DELETE_LOG, FETCH_LOGS, UPDATE_LOG } from './const';
+import { DELETE_LOG, FETCH_LOG, FETCH_LOGS, UPDATE_LOG } from './const';
 
 function* fetchItems({ payload: params }: any): Generator<any> {
   try {
@@ -39,6 +41,15 @@ function* deleteItem({ payload: id }: { payload: any }): Generator<any> {
   }
 }
 
+function* fetchItem({ payload: id }: any): Generator<any> {
+  try {
+    const response: any = yield fetcher.get(`/staff/logs/${id}/`);
+    yield put(fetchLogSuccess(response.data));
+  } catch (error: any) {
+    yield put(handleFailures(error.response, fetchLogFailed));
+  }
+}
+
 function* watchFetchItems(): Generator<any> {
   yield takeEvery<any>(FETCH_LOGS, fetchItems);
 }
@@ -51,6 +62,15 @@ function* watchDeleteItems(): Generator<any> {
   yield takeEvery<any>(DELETE_LOG, deleteItem);
 }
 
-const LogsSagas = [watchFetchItems(), watchUpdateItems(), watchDeleteItems()];
+function* watchFetchItem(): Generator<any> {
+  yield takeEvery<any>(FETCH_LOG, fetchItem);
+}
+
+const LogsSagas = [
+  watchFetchItems(),
+  watchUpdateItems(),
+  watchDeleteItems(),
+  watchFetchItem()
+];
 
 export default LogsSagas;

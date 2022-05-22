@@ -65,5 +65,11 @@
   "LOGS": "Logs",
   "CLOSE": "Close",
   "UNKNOWN_PERSON": "Uknown person",
-  "WATCH": "Watch"
+  "WATCH": "Watch",
+  "EMPLOYEE": "Employee",
+  "NOTIFICATIONS_MESSAGES": {
+    "UNKOWN_ACCESS": "Access from unkown person has been detected"
+  },
+  "NOTIFICATIONS": "Notifications",
+  "NO_NOTIFICATIONS": "No notifications for the moment"
 }

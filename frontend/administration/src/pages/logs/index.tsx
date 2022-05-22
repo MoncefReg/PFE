@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 // Hooks
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
+import { useSearchParams } from 'react-router-dom';
 
 // UI
 import { Edit, InfoOutlined } from '@mui/icons-material';
@@ -12,7 +13,7 @@ import { IconButton, styled, SvgIcon, Tooltip } from '@mui/material';
 // Redux
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { deleteLog, fetchLogs, updateLog } from 'src/redux/actions';
+import { deleteLog, fetchLog, fetchLogs, updateLog } from 'src/redux/actions';
 
 // Components
 import DataGrid from 'src/components/DataGrid';
@@ -44,16 +45,14 @@ const Logs = () => {
   const updateSuccess: ApiEvent = LogsReducer.updateSuccess;
   const createSuccess: ApiEvent = LogsReducer.createSuccess;
   const error: ApiEvent<{ type: string; msgs: string[] }> = LogsReducer.error;
+  const log: Log = LogsReducer.log;
   const { fullDatetimeFormat } = getDateFormat();
+  const [searchParams, setSearchParam] = useSearchParams();
 
   // States
   const [refresh, setRefresh] = useState(false);
   const [open, setOpen] = useState<any>(false);
   const [isEdit, setIsEdit] = useState<any>(false);
-
-  // const handleOpenDelete = (payload?: string) => {
-  //   setOpen({ action: 'delete', payload });
-  // };
 
   const handleOpenInfos = (payload: Log) => {
     setIsEdit(false);
@@ -196,6 +195,20 @@ const Logs = () => {
     if (errors)
       errors.msgs.forEach((err) => enqueueSnackbar(err, { variant: 'error' }));
   }, [error]);
+
+  useEffect(() => {
+    const param = searchParams.get('log');
+    if (param) {
+      dispatch(fetchLog(param));
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (log) {
+      setSearchParam({});
+      setOpen({ action: 'infos', payload: log });
+    }
+  }, [log]);
 
   return (
     <Root>

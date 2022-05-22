@@ -15,3 +15,11 @@ export interface Log {
   image: any;
   created_on?: any;
 }
+
+export interface INotification {
+  id?: string;
+  data: any;
+  seen: boolean;
+  seen_date?: string;
+  created_on: string;
+}

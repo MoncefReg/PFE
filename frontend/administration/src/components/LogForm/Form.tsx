@@ -35,9 +35,13 @@ const LogForm = ({ isEdit = false }: Props) => {
               label={t('EMPLOYEE')}
               placeholder={t('EMPLOYEE')}
               fullWidth
-              value={`${(values.employee as any)?.first_name}, ${
-                (values.employee as any)?.last_name
-              }`}
+              value={
+                values.employee_data
+                  ? `${(values.employee_data as any)?.first_name}, ${
+                      (values.employee_data as any)?.last_name
+                    }`
+                  : t('UNKNOWN_PERSON')
+              }
               onChange={undefined}
               onBlur={undefined}
               InputProps={{ readOnly: !isEdit }}

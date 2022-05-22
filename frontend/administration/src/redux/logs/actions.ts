@@ -4,9 +4,12 @@ import {
   DELETE_LOG,
   DELETE_LOG_FAILED,
   DELETE_LOG_SUCCESS,
+  FETCH_LOG,
   FETCH_LOGS,
   FETCH_LOGS_FAILED,
   FETCH_LOGS_SUCCESS,
+  FETCH_LOG_FAILED,
+  FETCH_LOG_SUCCESS,
   UPDATE_LOG,
   UPDATE_LOG_FAILED,
   UPDATE_LOG_SUCCESS
@@ -98,5 +101,35 @@ export const deleteLogSuccess = (payload: ApiEvent) => ({
  */
 export const deleteLogFailed = (payload: any) => ({
   type: DELETE_LOG_FAILED,
+  payload
+});
+
+/**
+ *
+ * @param payload - request params
+ * @returns
+ */
+export const fetchLog = (payload: any) => ({
+  type: FETCH_LOG,
+  payload
+});
+
+/**
+ *
+ * @param payload - Server response
+ * @returns
+ */
+export const fetchLogSuccess = (payload: any) => ({
+  type: FETCH_LOG_SUCCESS,
+  payload
+});
+
+/**
+ *
+ * @param payload - Request errors
+ * @returns
+ */
+export const fetchLogFailed = (payload: any) => ({
+  type: FETCH_LOG_FAILED,
   payload
 });

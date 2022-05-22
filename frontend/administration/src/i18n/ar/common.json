@@ -65,5 +65,11 @@
   "LOGS": "سجلات",
   "CLOSE": "غلق",
   "UNKNOWN_PERSON": "غير معروف",
-  "WATCH": "بث حي"
+  "WATCH": "بث حي",
+  "EMPLOYEE": "موظف",
+  "NOTIFICATIONS_MESSAGES": {
+    "UNKOWN_ACCESS": "تم تسجيل دخول شخص غير معروف"
+  },
+  "NOTIFICATIONS": "الإشعارات",
+  "NO_NOTIFICATIONS": "لا توجد إشعارات حاليا"
 }
