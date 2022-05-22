@@ -37,13 +37,21 @@ services:
   postgres-db:
     image: postgres:14.1
     environment:
-      POSTGRES_DB: pfe
+      POSTGRES_DB: surv
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
     volumes:
       - pg_lib:/var/lib/postgresql/data
+    networks:
+      - backend
+    restart: on-failure
+  
+  redis:
+    image: redis:7.0.0
+    ports:
+      - "6379:6379"
     networks:
       - backend
     restart: on-failure
