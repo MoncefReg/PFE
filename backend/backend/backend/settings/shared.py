@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'staff_management',
     'devices_management',
     'django_cleanup.apps.CleanupConfig',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -131,4 +132,15 @@ REST_AUTH_SERIALIZERS = {
 
 REST_AUTH_REGISTER_SERIALIZERS = {
     "REGISTER_SERIALIZER": "authapp.serializers.RegisterSerializer",
+}
+
+ASGI_APPLICATION = "backend.asgi.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
 }

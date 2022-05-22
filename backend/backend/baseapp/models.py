@@ -129,3 +129,19 @@ class Node(SafeDeleteModel):
 
     class Meta:
         verbose_name_plural = 'Nodes'
+
+
+class Notification(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_CASCADE
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    data = models.JSONField(default=dict)
+    seen_date = models.DateTimeField(blank=True, null=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.pk}'
+
+    class Meta:
+        verbose_name_plural = 'Notifications'

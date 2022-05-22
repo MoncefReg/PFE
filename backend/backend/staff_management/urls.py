@@ -9,5 +9,7 @@ router.register('logs', views.LogEventViewSet, basename='log_events')
 
 urlpatterns = [
     path(r'', include(router.urls)),
-    path(r'mark-log/', views.LogView.as_view(), name="mark_log_from_camera")
+    path(r'mark-log/', views.LogView.as_view(), name="mark_log_from_camera"),
+    path(r'notifications/', views.get_notifications, name="notifications"),
+    path(r'notifications/<uuid:pk>/mark-seen/', views.mark_seen, name="mark_seen")
 ]

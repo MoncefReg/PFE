@@ -4,6 +4,9 @@ import datetime
 import os
 from django.conf import settings
 from django.core.files.base import ContentFile
+from django.utils.timezone import make_aware
+from rest_framework.decorators import api_view
+from rest_framework.exceptions import NotFound
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -13,7 +16,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework import mixins
 from deepface import DeepFace
 
-from baseapp.models import Employee, LogEvent
+from baseapp.models import Employee, LogEvent, Notification
+from baseapp.serializers import NotificationSerializer
 from staff_management.serializers import LogSerializer, EmployeeSerializer
 
 
@@ -73,3 +77,19 @@ class LogEventViewSet(GenericViewSet,
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ('employee__first_name', 'employee__last_name')
     ordering_fields = ('created_on',)
+
+
+@api_view(['GET'])
+def get_notifications(request):
+    return Response(NotificationSerializer(
+        instance=Notification.objects.filter(seen_date__isnull=True),
+        many=True).data)
+
+
+@api_view(['PATCH'])
+def mark_seen(request, pk):
+    notification = Notification.objects.get(id=pk)
+    notification.seen_date = make_aware(datetime.datetime.now())
+    notification.save()
+    return Response(data=NotificationSerializer(instance=notification).data,
+                    status=status.HTTP_200_OK)

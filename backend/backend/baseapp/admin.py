@@ -35,9 +35,15 @@ class ClusterAdmin(SafeDeleteAdmin):
     list_filter = SafeDeleteAdmin.list_filter
 
 
+class NotificationAdmin(SafeDeleteAdmin):
+    list_display = (highlight_deleted, "id", "seen_date") + SafeDeleteAdmin.list_display
+    list_filter = SafeDeleteAdmin.list_filter
+
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Admin, AdminAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(LogEvent, LogEventAdmin)
 admin.site.register(Node, NodeAdmin)
 admin.site.register(Cluster, ClusterAdmin)
+admin.site.register(Notification, NotificationAdmin)

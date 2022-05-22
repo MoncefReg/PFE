@@ -18,3 +18,7 @@ dj-rest-auth
 Pillow
 deepface
 django-cleanup
+channels
+channels-redis
+asgi-redis
+redis
