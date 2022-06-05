@@ -1,4 +1,5 @@
 import { styled } from '@mui/material';
+import AuthGuard from 'src/components/AuthGuard';
 import Sidebar from 'src/components/AuthLayout/Sidebar';
 import Topbar from 'src/components/AuthLayout/Topbar';
 import { SIDEBAR_WIDTH } from 'src/constants';
@@ -39,11 +40,13 @@ const AuthLayout = ({ children }: { children: JSX.Element }) => {
   const { isCollapsed } = useSidebar();
 
   return (
-    <Root className={classes.root} sidebarcollapsed={isCollapsed ? 1 : 0}>
-      <Sidebar />
-      <Topbar />
-      <div className={classes.content}>{children}</div>
-    </Root>
+    <AuthGuard>
+      <Root className={classes.root} sidebarcollapsed={isCollapsed ? 1 : 0}>
+        <Sidebar />
+        <Topbar />
+        <div className={classes.content}>{children}</div>
+      </Root>
+    </AuthGuard>
   );
 };
 

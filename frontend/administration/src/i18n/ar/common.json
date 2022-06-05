@@ -71,5 +71,10 @@
     "UNKOWN_ACCESS": "تم تسجيل دخول شخص غير معروف"
   },
   "NOTIFICATIONS": "الإشعارات",
-  "NO_NOTIFICATIONS": "لا توجد إشعارات حاليا"
+  "NO_NOTIFICATIONS": "لا توجد إشعارات حاليا",
+  "LOGIN": {
+    "TITLE": "مرحبا",
+    "MESSAGE": "الرجاء كتابة معلومات الدخول",
+    "ACTION": "الدخول"
+  }
 }

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import AuthReducer from './auth/reducer';
 import ClustersManagementReducer from './clusters_management/reducer';
 import DevicesManagementReducer from './devices_management/reducer';
 import LogsManagementReducer from './logs/reducer';
@@ -10,5 +11,6 @@ export default combineReducers({
   Clusters: ClustersManagementReducer,
   Staff: EmployeesManagementReducer,
   Logs: LogsManagementReducer,
-  Notifications: NotificationsReducer
+  Notifications: NotificationsReducer,
+  Auth: AuthReducer
 });

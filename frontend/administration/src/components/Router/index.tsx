@@ -4,6 +4,7 @@ import SidebarProvider from 'src/contexts/SidebarContext';
 import UserProvider from 'src/contexts/UserContext';
 import AuthLayout from 'src/layouts/AuthLayout';
 import RouteType from 'src/models/Route';
+import GuestGuard from '../GuestGuard';
 
 const Router = () => {
   return (
@@ -70,6 +71,11 @@ const RoutesList: RouteType[] = [
     path: '/watch',
     component: lazy(() => import('src/pages/watch')),
     layout: AuthLayout
+  },
+  {
+    path: '/login',
+    component: lazy(() => import('src/pages/auth/login')),
+    guard: GuestGuard as any
   },
   {
     path: '/*',

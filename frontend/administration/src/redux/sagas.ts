@@ -1,4 +1,5 @@
 import { all } from 'redux-saga/effects';
+import AuthSagas from './auth/sagas';
 import ClustersSagas from './clusters_management/sagas';
 import DevicesSagas from './devices_management/sagas';
 import LogsSagas from './logs/sagas';
@@ -11,6 +12,7 @@ export default function* rootSaga(): Generator<any> {
     ...ClustersSagas,
     ...EmployeesSagas,
     ...LogsSagas,
-    ...NotificationsSaga
+    ...NotificationsSaga,
+    ...AuthSagas
   ]);
 }

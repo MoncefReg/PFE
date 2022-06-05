@@ -66,3 +66,12 @@ export const extractData = (
   }
   return isDate ? moment(value) : value;
 };
+
+export const makeSession = (data: any) => {
+  if (data === null) localStorage.clear();
+  else {
+    Object.entries(data).forEach(([key, value]: any) => {
+      localStorage.setItem(key, value);
+    });
+  }
+};

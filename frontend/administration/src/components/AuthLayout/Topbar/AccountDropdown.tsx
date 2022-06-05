@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { ROUTES } from 'src/constants';
-import useUser from 'src/hooks/useUser';
+import { makeSession } from 'src/utils/helpers';
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
   height: 32,
@@ -14,7 +14,6 @@ const AccountDropdown = () => {
   const buttonRef = useRef(null);
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { setUser } = useUser();
 
   // States
   const [isOpen, setOpen] = useState(false);
@@ -29,7 +28,7 @@ const AccountDropdown = () => {
 
   const handleLogout = () => {
     try {
-      setUser(null);
+      makeSession(null);
       navigate(ROUTES.LOGIN);
     } catch (err) {
       //
