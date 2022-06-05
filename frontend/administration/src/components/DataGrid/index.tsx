@@ -103,6 +103,8 @@ const DataGrid = ({
 
   const handleSearch = (event: any) => {
     setSearch(event.target.value);
+    setPage(0);
+    setRefresh((state) => !state);
   };
 
   const createOptions = () => {
@@ -121,7 +123,7 @@ const DataGrid = ({
   useEffect(() => {
     const options = createOptions();
     dispatch(fetchItems(options));
-  }, [sort, refresh, search, externalRefresh]);
+  }, [sort, refresh, externalRefresh]);
 
   useEffect(() => {
     if (reducer?.data) setData(reducer.data);
