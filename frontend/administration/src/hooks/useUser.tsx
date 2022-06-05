@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import { UserContext } from 'src/contexts/UserContext';
-
 export default function useUser() {
-  return useContext(UserContext);
+  const email = localStorage.getItem('email');
+  const confirmed = localStorage.getItem('confirmed') === 'true';
+
+  return { email, confirmed };
 }

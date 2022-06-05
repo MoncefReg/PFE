@@ -76,5 +76,18 @@
     "TITLE": "مرحبا",
     "MESSAGE": "الرجاء كتابة معلومات الدخول",
     "ACTION": "الدخول"
-  }
+  },
+  "CURRENT_PASSWORD": "كلمة السر الحالية",
+  "NEW_PASSWORD": "كلمة السر الجديدة",
+  "WEAK_PASSWORD": "كلمة السر يجب أن تحتوي على الأقل على 8 رموز",
+  "PASS_CHANGED_SUCCESSFULLY": "تم تغيير كلمة السر بنجاح",
+  "NEW_EMAIL": "العنوان الجديد",
+  "CURRENT_EMAIL": "العنوان الحالي",
+  "ACCOUNT_VERIFIED_INFOS": "تم التحقق من العنوان",
+  "VERIFY_ACCOUNT_WARNING": "العنوان الحالي لم يتم التحقق منه",
+  "SEND": "إرسال",
+  "VERIFY": "التحقق",
+  "VERIFY_EMAIL_TITLE": "التحقق من العنوان",
+  "ENTER_CODE_MESSAGE": "الرجاء كتابة الرمز المرسل إليك",
+  "SAVE": "حفظ"
 }

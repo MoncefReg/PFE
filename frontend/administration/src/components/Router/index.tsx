@@ -78,6 +78,11 @@ const RoutesList: RouteType[] = [
     guard: GuestGuard as any
   },
   {
+    path: '/account',
+    component: lazy(() => import('src/pages/auth/account')),
+    layout: AuthLayout
+  },
+  {
     path: '/*',
     component: lazy(() => import('src/components/FallbackScreen')),
     layout: AuthLayout

@@ -76,5 +76,18 @@
     "TITLE": "Hello!",
     "MESSAGE": "Enter your credentials to continue",
     "ACTION": "Login"
-  }
+  },
+  "CURRENT_PASSWORD": "Current password",
+  "NEW_PASSWORD": "New password",
+  "WEAK_PASSWORD": "Password must be atleaset 8 caracters",
+  "PASS_CHANGED_SUCCESSFULLY": "Password changed successfully",
+  "NEW_EMAIL": "New email",
+  "CURRENT_EMAIL": "Current email",
+  "ACCOUNT_VERIFIED_INFOS": "Email is verified",
+  "VERIFY_ACCOUNT_WARNING": "Your email needs a confirmation",
+  "SEND": "Send",
+  "VERIFY": "Verify",
+  "VERIFY_EMAIL_TITLE": "Verify your email",
+  "ENTER_CODE_MESSAGE": "Enter the code sent to you",
+  "SAVE": "Save"
 }
