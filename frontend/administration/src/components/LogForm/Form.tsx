@@ -36,9 +36,9 @@ const LogForm = ({ isEdit = false }: Props) => {
               placeholder={t('EMPLOYEE')}
               fullWidth
               value={
-                values.employee_data
-                  ? `${(values.employee_data as any)?.first_name}, ${
-                      (values.employee_data as any)?.last_name
+                values.employee
+                  ? `${(values.employee as any)?.first_name}, ${
+                      (values.employee as any)?.last_name
                     }`
                   : t('UNKNOWN_PERSON')
               }
