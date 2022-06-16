@@ -20,7 +20,7 @@ export const resources = {
 };
 
 i18n.use(initReactI18next).init({
-  fallbackLng: 'en',
+  fallbackLng: localStorage.getItem('language') || 'en',
   debug: DEBUG,
   ns: ['common', 'errors'],
   supportedLngs: ['en', 'ar'],

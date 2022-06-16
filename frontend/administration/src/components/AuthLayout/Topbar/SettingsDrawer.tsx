@@ -49,7 +49,12 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
 const SettingsDrawer = () => {
   const { t } = useTranslation();
-  const { theme: settingsTheme, saveTheme } = useSettings();
+  const {
+    theme: settingsTheme,
+    saveTheme,
+    language,
+    saveLanguage
+  } = useSettings();
 
   // States
   const [isOpen, setIsOpen] = useState(false);
@@ -66,7 +71,9 @@ const SettingsDrawer = () => {
     saveTheme(theme);
   };
 
-  const handleLanguageChange = (language: any) => {};
+  const handleLanguageChange = (language: any) => {
+    saveLanguage(language);
+  };
 
   return (
     <>
@@ -121,6 +128,11 @@ const SettingsDrawer = () => {
                   <ListItemButton
                     key={key}
                     className={classes.languageItem}
+                    sx={{
+                      mb: 1,
+                      background: (theme) =>
+                        language === value ? theme.palette.action.hover : 'none'
+                    }}
                     onClick={() => handleLanguageChange(value)}
                   >
                     <ListItemText>{t(`LANGUAGE_OPTIONS.${key}`)}</ListItemText>

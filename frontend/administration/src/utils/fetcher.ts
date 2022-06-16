@@ -8,7 +8,7 @@ const fetcher = Axios.create({
   timeout: 10000
 });
 
-fetcher.interceptors.request.use((config) => {
+fetcher.interceptors.request.use((config: any) => {
   const language = i18next.language;
   switch (language) {
     case LANGUAGES.ARABIC:
