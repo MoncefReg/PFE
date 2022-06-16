@@ -27,9 +27,12 @@ def index():
 
 class Generator:
     can_send: bool = True
+    ip = ""
+    port = ""
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self, ip, port) -> None:
+        self.ip = ip
+        self.port = port
 
     def reset_timer(self):
         print("[+] Reseting timer...")
@@ -41,7 +44,7 @@ class Generator:
             frame, faces_images = camera.get_frame()
             if self.can_send and len(faces_images) > 0:
                 self.can_send = False
-                send_face_to_api(faces_images)
+                send_face_to_api(faces_images, self.ip, self.port)
                 Timer(3.0, self.reset_timer).start()
 
             yield (b'--frame\r\n'
@@ -56,7 +59,7 @@ def video():
     user = request.args.get("user", None)
     password = request.args.get("password", None)
 
-    generator = Generator()
+    generator = Generator(ip, port)
     return Response(generator.generate(VideoCPU(ip, port, user, password)),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 

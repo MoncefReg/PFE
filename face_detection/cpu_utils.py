@@ -6,14 +6,14 @@ import requests
 faceDetect = cv2.CascadeClassifier('detector.xml')
 
 
-def send_face_to_api(images):
+def send_face_to_api(images, ip, port):
     images_data = []
     for image in images:
         images_data.append("data:image/jpeg;base64, " +
                            base64.b64encode(image).decode("utf-8"))
     try:
         req = requests.post("http://127.0.0.1:8000/api/v1/staff/mark-log/",
-                            json={"images": images_data})
+                            json={"images": images_data, "ip": ip, "port": port})
     except Exception as e:
         print(e)
         pass
@@ -24,9 +24,11 @@ class Video(object):
         print("[+] Connecting to camera please wait...")
         url = "rtsp://"
         creds = None
+        self.ip = ip
+        self.port = port
         location = f'{ip}:{port}'
         if user and password:
-            creds = f'{user}@{password}:'
+            creds = f'{user}:{password}@'
         if creds:
             url += creds
         url += location + "/live.sdp"

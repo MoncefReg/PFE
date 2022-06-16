@@ -83,6 +83,11 @@ const RoutesList: RouteType[] = [
     layout: AuthLayout
   },
   {
+    path: '/dashboard',
+    component: lazy(() => import('src/pages/dashboard')),
+    layout: AuthLayout
+  },
+  {
     path: '/*',
     component: lazy(() => import('src/components/FallbackScreen')),
     layout: AuthLayout

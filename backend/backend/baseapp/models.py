@@ -86,6 +86,7 @@ class LogEvent(SafeDeleteModel):
     date = models.DateTimeField(auto_now_add=True)
     employee = models.ForeignKey(Employee, null=True, blank=True, on_delete=models.SET_NULL)
     image = models.ImageField(upload_to="log_events", null=True, blank=True)
+    node = models.ForeignKey("Node", on_delete=models.PROTECT, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 

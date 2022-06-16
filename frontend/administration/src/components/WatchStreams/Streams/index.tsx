@@ -1,6 +1,6 @@
 // UI
 import { Box, Divider, styled, Typography } from '@mui/material';
-import { Cluster } from 'src/models';
+import { Cluster, Device } from 'src/models';
 
 interface Props {
   cluster?: Cluster;
@@ -45,6 +45,17 @@ const StreamsList = ({ cluster }: Props) => {
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = 'static/not-found.jpg';
   };
+
+  const formatLink = (device: Device) => {
+    let query = 'http://localhost:8787/video?';
+    query += 'ip=' + device.ip_address;
+    query += '&port=' + device.port;
+
+    if (device.user && device.password)
+      query += `&user=${device.user}&password=${device.password}`;
+
+    return query;
+  };
   return (
     <Box p={2}>
       <Typography variant="h3" color="text.primary" mb={4}>
@@ -57,11 +68,7 @@ const StreamsList = ({ cluster }: Props) => {
               <OverlayedContainer>
                 <Typography>{n.ip_address}</Typography>
               </OverlayedContainer>
-              <Image
-                alt="..."
-                src={`http://localhost:8787/video?ip=${n.ip_address}&port=${n.port}`}
-                onError={handleError}
-              />
+              <Image alt="..." src={formatLink(n)} onError={handleError} />
             </Wrapper>
             {index + 1 < (cluster?.nodes?.length as any) && (
               <Divider sx={{ my: 4 }} flexItem />
