@@ -131,10 +131,12 @@ const Item = ({ text, icon: Icon, link }: ItemProps) => {
             <ListItemIcon className={classes.icon}>
               {Icon && <Icon size={20} sx={{ width: 20, height: 20 }} />}
             </ListItemIcon>
-            <ListItemText
-              className={classes.text}
-              primary={<Typography variant="body2">{text}</Typography>}
-            />
+            {!isCollapsed && (
+              <ListItemText
+                className={classes.text}
+                primary={<Typography variant="body2">{text}</Typography>}
+              />
+            )}
           </Box>
         </ListItemButton>
       </Box>
