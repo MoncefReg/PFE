@@ -89,5 +89,13 @@
   "VERIFY": "Verify",
   "VERIFY_EMAIL_TITLE": "Verify your email",
   "ENTER_CODE_MESSAGE": "Enter the code sent to you",
-  "SAVE": "Save"
+  "SAVE": "Save",
+  "DEVICE": "Device",
+  "DASHBOARD": {
+    "TITLE": "Welcome!",
+    "EMPLOYEES": "Employees",
+    "DEVICES": "Devices",
+    "LOGS": "Logs"
+  },
+  "COUNT": "Count"
 }

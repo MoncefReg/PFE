@@ -5,6 +5,7 @@ import DevicesManagementReducer from './devices_management/reducer';
 import LogsManagementReducer from './logs/reducer';
 import NotificationsReducer from './notifications/reducer';
 import EmployeesManagementReducer from './staff_management/reducer';
+import StatsReducer from './stats/reducer';
 
 export default combineReducers({
   Devices: DevicesManagementReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   Staff: EmployeesManagementReducer,
   Logs: LogsManagementReducer,
   Notifications: NotificationsReducer,
-  Auth: AuthReducer
+  Auth: AuthReducer,
+  Stats: StatsReducer
 });

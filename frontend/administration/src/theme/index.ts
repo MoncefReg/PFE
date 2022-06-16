@@ -87,6 +87,13 @@ const themeOptions = [
             borderRadius: baseRadius
           }
         }
+      },
+      MuiSkeleton: {
+        styleOverrides: {
+          rectangular: {
+            borderRadius: baseRadius
+          }
+        }
       }
     },
     palette: {
@@ -185,6 +192,13 @@ const themeOptions = [
       MuiOutlinedInput: {
         styleOverrides: {
           root: {
+            borderRadius: baseRadius
+          }
+        }
+      },
+      MuiSkeleton: {
+        styleOverrides: {
+          rectangular: {
             borderRadius: baseRadius
           }
         }

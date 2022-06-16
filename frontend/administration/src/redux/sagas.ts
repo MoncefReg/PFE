@@ -5,6 +5,7 @@ import DevicesSagas from './devices_management/sagas';
 import LogsSagas from './logs/sagas';
 import NotificationsSaga from './notifications/saga';
 import EmployeesSagas from './staff_management/sagas';
+import StatsSagas from './stats/sagas';
 
 export default function* rootSaga(): Generator<any> {
   yield all([
@@ -13,6 +14,7 @@ export default function* rootSaga(): Generator<any> {
     ...EmployeesSagas,
     ...LogsSagas,
     ...NotificationsSaga,
-    ...AuthSagas
+    ...AuthSagas,
+    ...StatsSagas
   ]);
 }

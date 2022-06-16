@@ -89,5 +89,13 @@
   "VERIFY": "التحقق",
   "VERIFY_EMAIL_TITLE": "التحقق من العنوان",
   "ENTER_CODE_MESSAGE": "الرجاء كتابة الرمز المرسل إليك",
-  "SAVE": "حفظ"
+  "SAVE": "حفظ",
+  "DEVICE": "جهاز",
+  "DASHBOARD": {
+    "TITLE": "مرحبا",
+    "EMPLOYEES": "الطاقم",
+    "DEVICES": "الأجهزة",
+    "LOGS": "سجلات"
+  },
+  "COUNT": "مرات التسجيل"
 }
