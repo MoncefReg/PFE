@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from django.utils.timezone import make_aware
 from rest_framework.decorators import api_view
-from rest_framework.exceptions import NotFound
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -14,7 +13,9 @@ from rest_framework import status
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.permissions import AllowAny
 from rest_framework import mixins
-from deepface import DeepFace
+from recognitionapp.dl.utils import recognise
+from tensorflow.keras.models import load_model
+from tensorflow.keras.backend import clear_session
 
 from baseapp.models import Employee, LogEvent, Notification
 from baseapp.serializers import NotificationSerializer
@@ -38,9 +39,11 @@ class LogView(APIView):
             image_bytes = ContentFile(image_bytes, name=datetime.datetime.now().__str__() + ".jpg")
             # except:
             #     image_bytes = None
-            results = DeepFace.find(
-                image, db_path=os.path.join(settings.MEDIA_ROOT, "employes_images"), detector_backend="opencv",
-                enforce_detection=False)
+            model_path = os.path.join(settings.BASE_DIR, "..", "recognitionapp", "dl", "model.h5")
+            results = recognise(
+                image, db_path=os.path.join(settings.MEDIA_ROOT, "employes_images"), model=load_model(model_path),
+            )
+            clear_session()
             if len(results) > 0:
                 employee = None
                 try:
