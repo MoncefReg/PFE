@@ -5,8 +5,6 @@ services:
     ports:
       - "5000:5000"
     restart: on-failure
-    # volumes:
-    # - ../../frontend:/opt/frontend
     networks:
       - frontend
 

@@ -4,3 +4,4 @@ sudo rm -rf ../frontend/administration/yarn.lock
 
 sudo docker build -t pfe/frontend:1.0 ../frontend
 sudo docker build -t pfe/backend:1.0 ../backend
+sudo docker build -t pfe/broker:1.0 ../face_detection

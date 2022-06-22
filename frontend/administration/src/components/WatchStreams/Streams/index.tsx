@@ -1,5 +1,6 @@
 // UI
 import { Box, Divider, styled, Typography } from '@mui/material';
+import { STREAM_URL } from 'src/constants';
 import { Cluster, Device } from 'src/models';
 
 interface Props {
@@ -47,7 +48,7 @@ const StreamsList = ({ cluster }: Props) => {
   };
 
   const formatLink = (device: Device) => {
-    let query = 'http://localhost:8787/video?';
+    let query = `${STREAM_URL}?`;
     query += 'ip=' + device.ip_address;
     query += '&port=' + device.port;
 

@@ -8,8 +8,18 @@ export const LANGUAGES = {
   ARABIC: 'ar'
 };
 
-export const API_URL = 'http://localhost:8000';
-export const WS_URL = 'ws://localhost:8000';
+export const API_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'http://localhost'
+    : 'http://localhost:8000';
+export const WS_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'ws://localhost'
+    : 'ws://localhost:8000';
+export const STREAM_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'http://localhost/video'
+    : 'http://localhost:8787';
 
 export const PAGINATION_OPTIONS = [10, 25, 50];
 
