@@ -1,7 +1,7 @@
 FROM node:16-alpine
 
 RUN apk --no-cache add --virtual native-deps \
-    g++ gcc libgcc libstdc++ linux-headers make python2 && \
+    g++ gcc libgcc libstdc++ linux-headers make python3 && \
     npm install --quiet node-gyp -g
 
 RUN mkdir -p /opt/administration

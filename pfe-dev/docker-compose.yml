@@ -14,16 +14,16 @@ services:
       - "8888:8888"
     restart: on-failure
     depends_on:
-      - postgres-db
+      - postgres
     environment:
-      PG_HOSTNAME: postgres-db
+      PG_HOSTNAME: postgres
     volumes:
       - ../backend/backend:/opt/backend
     networks:
       - backend
   
   face-detection-api:
-    image: pfe:/face_detection:1.0
+    image: pfe/broker:1.0
     restart: on-failure
     ports:
       - "8787:8787"
@@ -32,7 +32,7 @@ services:
     networks:
       - backend
 
-  postgres-db:
+  postgres:
     image: postgres:14.1
     environment:
       POSTGRES_DB: surv
@@ -41,7 +41,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pg_lib:/var/lib/postgresql/data
+      - pg_lib_pfe:/var/lib/postgresql/data
     networks:
       - backend
     restart: on-failure
@@ -69,7 +69,7 @@ services:
       - ./proxy-config/config.cfg:/usr/local/etc/haproxy/haproxy.cfg
 
 volumes:
-  pg_lib:
+  pg_lib_pfe:
 
 networks:
   frontend:
