@@ -14,7 +14,7 @@ export const API_URL =
     : 'http://localhost:8000';
 export const WS_URL =
   process.env.NODE_ENV === 'production'
-    ? 'ws://localhost'
+    ? 'ws://localhost:8888'
     : 'ws://localhost:8000';
 export const STREAM_URL =
   process.env.NODE_ENV === 'production'

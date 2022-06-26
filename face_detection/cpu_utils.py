@@ -12,7 +12,7 @@ def send_face_to_api(images, ip, port):
         images_data.append("data:image/jpeg;base64, " +
                            base64.b64encode(image).decode("utf-8"))
     try:
-        req = requests.post("http://127.0.0.1:8000/api/v1/staff/mark-log/",
+        req = requests.post("http://backend-api:8888/api/v1/staff/mark-log/",
                             json={"images": images_data, "ip": ip, "port": port})
     except Exception as e:
         print(e)
