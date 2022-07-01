@@ -17,7 +17,6 @@ def reset_recognise(sender, instance, created, **kwargs):
     images_path = os.path.join(
         settings.MEDIA_ROOT, "employes_images", "representation*")
     files_re = images_path
-    print(files_re)
     files = glob.glob(files_re)
     for file in files:
         os.remove(file)

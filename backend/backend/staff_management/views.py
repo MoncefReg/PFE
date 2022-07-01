@@ -13,17 +13,17 @@ from rest_framework import status
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.permissions import AllowAny
 from rest_framework import mixins
-from recognitionapp.dl.utils import recognise
-from tensorflow.keras.models import load_model
-from tensorflow.keras.backend import clear_session
+# from recognitionapp.dl.utils import recognise
+# from tensorflow.keras.models import load_model
+# from tensorflow.keras.backend import clear_session
+from deepface import DeepFace
 
-from baseapp.models import Employee, LogEvent, Notification
+from baseapp.models import Employee, LogEvent, Node, Notification
 from baseapp.serializers import NotificationSerializer
 from staff_management.serializers import LogSerializer, EmployeeSerializer
 
 
 def get_id_from_image(path: str):
-    print(path)
     return path.split("/")[-1].split(".")[0].split("_")[0]
 
 
@@ -32,18 +32,29 @@ class LogView(APIView):
 
     def post(self, request):
         images = request.data.get("images", [])
+        ####
+        ip = request.data.get("ip", None)
+        port = request.data.get("port", None)
+        device = None
+        if ip is not None and port is not None:
+            try:
+                device = Node.objects.get(ip_address=ip, port=port)
+                device = str(device.pk)
+            except:
+                pass
         for image in images:
             # try:
             image_bytes = image.split(" ")[-1]
             image_bytes = base64.b64decode(image_bytes)
-            image_bytes = ContentFile(image_bytes, name=datetime.datetime.now().__str__() + ".jpg")
+            image_bytes = ContentFile(
+                image_bytes, name=datetime.datetime.now().__str__() + ".jpg")
             # except:
             #     image_bytes = None
-            model_path = os.path.join(settings.BASE_DIR, "..", "recognitionapp", "dl", "model.h5")
-            results = recognise(
-                image, db_path=os.path.join(settings.MEDIA_ROOT, "employes_images"), model=load_model(model_path),
-            )
-            clear_session()
+            # model_path = os.path.join(
+            #     settings.BASE_DIR, "..", "recognitionapp", "dl", "model.h5")
+            results = DeepFace.find(
+                image, db_path=os.path.join(settings.MEDIA_ROOT, "employes_images"), silent=True, enforce_detection=False)
+            # clear_session()
             if len(results) > 0:
                 employee = None
                 try:
@@ -55,6 +66,8 @@ class LogView(APIView):
                 data = {"image": image_bytes, "employee": employee}
             else:
                 data = {"image": image_bytes, "employee": None}
+            if device:
+                data["node"] = device
             log_serializer = LogSerializer(data=data)
             if log_serializer.is_valid(raise_exception=True):
                 log_serializer.save()

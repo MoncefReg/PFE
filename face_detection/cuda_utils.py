@@ -22,7 +22,6 @@ class Video(object):
 
         faces = faceDetect.detectMultiScale(gpu_frame)
         results = faces.download()
-        print('results: ', results)
         if numpy.all(results):
             for result in results:
                 for x, y, w, h in result:

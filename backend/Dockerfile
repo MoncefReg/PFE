@@ -3,7 +3,7 @@ FROM python:3.9-slim
 ENV APP_DIR_NAME backend
 ENV APP_PATH /opt/$APP_DIR_NAME
 
-RUN apt-get update && apt-get install -y gcc python3-dev musl-dev postgresql libffi-dev
+RUN apt-get update && apt-get install -y gcc python3-dev musl-dev postgresql libpq-dev libffi-dev
 # Pillow requirements
 RUN apt-get install -y libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tk-dev tcl-dev
 

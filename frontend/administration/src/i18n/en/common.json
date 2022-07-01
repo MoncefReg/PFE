@@ -97,5 +97,6 @@
     "DEVICES": "Devices",
     "LOGS": "Logs"
   },
-  "COUNT": "Count"
+  "COUNT": "Count",
+  "SHOW_HISTORY": "Show history"
 }

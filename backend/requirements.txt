@@ -1,6 +1,6 @@
 Django~=4.0.4
 gunicorn
-psycopg2-binary
+psycopg2
 cryptography
 djangorestframework~=3.13.1
 django-filter~=21.1
@@ -27,4 +27,4 @@ pandas~=1.4.2
 numpy~=1.22.3
 opencv-python~=4.5.5.64
 requests~=2.27.1
-tensorflow~=2.8.0
+# tensorflow~=2.8.0

@@ -1,9 +1,22 @@
 import base64
+from threading import Thread
 import cv2
 import numpy
 import requests
+# from moviepy.editor import VideoFileClip
+import os
 
 faceDetect = cv2.CascadeClassifier('detector.xml')
+
+
+def allow_record(url):
+    try:
+        # clip = VideoFileClip(url)
+        # duration = clip.duration
+        duration = 0
+        return duration <= 60
+    except:
+        return True
 
 
 def send_face_to_api(images, ip, port):
@@ -32,16 +45,38 @@ class Video(object):
         if creds:
             url += creds
         url += location + "/live.sdp"
-        print(url)
         self.video = cv2.VideoCapture(url)
         print("[+] Connected to camera")
+
+        self.path_file = f"videos/tmp/{ip}.avi"
+        self.prev_path_file = f"videos/{ip}.avi"
+
+        width = self.video.get(cv2.CAP_PROP_FRAME_WIDTH)
+        height = self.video.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        fps = self.video.get(cv2.CAP_PROP_FPS)
+# 
+        fourcc = cv2.VideoWriter_fourcc(*'xvid')
+        self.out = cv2.VideoWriter(self.path_file, fourcc, 20.0,
+                                   (int(width), int(height)))
 
     def __del__(self):
         self.video.release()
         print("[+] Camera disconnected")
 
+    def save_frame(self, frame):
+
+        if allow_record(self.path_file) or True:
+            self.out.write(frame)
+        elif os.path.isfile(path_file):
+            if os.path.isfile(prev_path_file):
+                os.remove(prev_path_file)
+            os.replace(path_file, prev_path_file)
+
     def get_frame(self):
         ret, frame = self.video.read()
+
+        self.save_frame(frame)
+
         faces = faceDetect.detectMultiScale(frame, 1.3, 5)
         faces_images = []
         for x, y, w, h in faces:
@@ -54,4 +89,4 @@ class Video(object):
             ret, jpg = cv2.imencode('.jpg', frame)
         else:
             ret, jpg = cv2.imencode(".jpg", numpy.zeros((800, 800)))
-        return [jpg.tobytes(), faces_images]
+        return [jpg.tobytes(), []]

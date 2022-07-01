@@ -1,7 +1,10 @@
+import { useState } from 'react';
 // UI
-import { Box, Divider, styled, Typography } from '@mui/material';
+import { Box, Button, Divider, styled, Typography } from '@mui/material';
 import { STREAM_URL } from 'src/constants';
 import { Cluster, Device } from 'src/models';
+import HistoryModal from '../HistoryModal';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   cluster?: Cluster;
@@ -43,6 +46,18 @@ const Image = styled('img')(({ theme }) => ({
 }));
 
 const StreamsList = ({ cluster }: Props) => {
+  const [ip, setIp] = useState<null | string>(null);
+
+  const { t } = useTranslation();
+
+  const handleOpenHistory = (val: string) => {
+    setIp(val);
+  };
+
+  const handleCloseHistory = () => {
+    setIp(null);
+  };
+
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = 'static/not-found.jpg';
   };
@@ -59,12 +74,27 @@ const StreamsList = ({ cluster }: Props) => {
   };
   return (
     <Box p={2}>
+      {!!ip && (
+        <HistoryModal
+          isOpen={!!ip}
+          ip={ip}
+          onClose={handleCloseHistory}
+          title={ip}
+        />
+      )}
       <Typography variant="h3" color="text.primary" mb={4}>
         {cluster?.name}
       </Typography>
       <div>
         {(cluster?.nodes || []).map((n, index) => (
           <>
+            <Button
+              variant="outlined"
+              sx={{ mb: 2 }}
+              onClick={() => handleOpenHistory(n.ip_address)}
+            >
+              {t('SHOW_HISTORY')}
+            </Button>
             <Wrapper key={n.id}>
               <OverlayedContainer>
                 <Typography>{n.ip_address}</Typography>

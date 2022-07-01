@@ -11,15 +11,15 @@ export const LANGUAGES = {
 export const API_URL =
   process.env.NODE_ENV === 'production'
     ? 'http://localhost'
-    : 'http://localhost:8000';
+    : 'http://localhost';
 export const WS_URL =
   process.env.NODE_ENV === 'production'
     ? 'ws://localhost:8888'
-    : 'ws://localhost:8000';
+    : 'ws://localhost:8888';
 export const STREAM_URL =
   process.env.NODE_ENV === 'production'
     ? 'http://localhost/video'
-    : 'http://localhost:8787';
+    : 'http://localhost/video';
 
 export const PAGINATION_OPTIONS = [10, 25, 50];
 
