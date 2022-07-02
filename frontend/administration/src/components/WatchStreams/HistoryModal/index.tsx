@@ -62,7 +62,7 @@ const History = ({ isOpen, title = '', ip, onClose }: Props) => {
                 >
                   <source
                     src={`${STREAM_URL}/history?ip=${ip}`}
-                    type="video/mp4"
+                    type="video/webm"
                   />
                 </video>
               </Box>

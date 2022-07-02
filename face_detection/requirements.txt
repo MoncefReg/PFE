@@ -3,3 +3,4 @@ numpy
 opencv-contrib-python
 opencv-python
 requests
+moviepy

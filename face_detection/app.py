@@ -75,7 +75,7 @@ def get_file():
 
     ip = request.args.get("ip", None)
     print(f"ip -------- {ip}")
-    file_name = os.path.join("videos", "tmp", ip + ".mp4")
+    file_name = os.path.join("videos", "tmp", ip + ".webm")
 
     byte1, byte2 = 0, None
 

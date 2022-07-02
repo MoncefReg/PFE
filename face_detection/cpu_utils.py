@@ -3,7 +3,7 @@ from threading import Thread
 import cv2
 import numpy
 import requests
-# from moviepy.editor import VideoFileClip
+from moviepy.editor import VideoFileClip
 import os
 
 faceDetect = cv2.CascadeClassifier('detector.xml')
@@ -11,8 +11,8 @@ faceDetect = cv2.CascadeClassifier('detector.xml')
 
 def allow_record(url):
     try:
-        # clip = VideoFileClip(url)
-        # duration = clip.duration
+        clip = VideoFileClip(url)
+        duration = clip.duration
         duration = 0
         return duration <= 60
     except:
@@ -25,7 +25,7 @@ def send_face_to_api(images, ip, port):
         images_data.append("data:image/jpeg;base64, " +
                            base64.b64encode(image).decode("utf-8"))
     try:
-        req = requests.post("http://backend-api:8888/api/v1/staff/mark-log/",
+        req = requests.post("http://localhost/api/v1/staff/mark-log/", timeout=0.0000000001,
                             json={"images": images_data, "ip": ip, "port": port})
     except Exception as e:
         print(e)
@@ -48,14 +48,14 @@ class Video(object):
         self.video = cv2.VideoCapture(url)
         print("[+] Connected to camera")
 
-        self.path_file = f"videos/tmp/{ip}.avi"
-        self.prev_path_file = f"videos/{ip}.avi"
+        self.path_file = f"videos/tmp/{ip}.webm"
+        self.prev_path_file = f"videos/{ip}.webm"
 
         width = self.video.get(cv2.CAP_PROP_FRAME_WIDTH)
         height = self.video.get(cv2.CAP_PROP_FRAME_HEIGHT)
         fps = self.video.get(cv2.CAP_PROP_FPS)
-# 
-        fourcc = cv2.VideoWriter_fourcc(*'xvid')
+
+        fourcc = cv2.VideoWriter_fourcc(*'VP90')
         self.out = cv2.VideoWriter(self.path_file, fourcc, 20.0,
                                    (int(width), int(height)))
 
@@ -64,18 +64,17 @@ class Video(object):
         print("[+] Camera disconnected")
 
     def save_frame(self, frame):
-
-        if allow_record(self.path_file) or True:
+        if allow_record(self.path_file):
             self.out.write(frame)
-        elif os.path.isfile(path_file):
-            if os.path.isfile(prev_path_file):
-                os.remove(prev_path_file)
-            os.replace(path_file, prev_path_file)
+        elif os.path.isfile(self.path_file):
+            if os.path.isfile(self.prev_path_file):
+                os.remove(self.prev_path_file)
+            os.replace(self.path_file, self.prev_path_file)
 
     def get_frame(self):
         ret, frame = self.video.read()
 
-        self.save_frame(frame)
+        # self.save_frame(frame)
 
         faces = faceDetect.detectMultiScale(frame, 1.3, 5)
         faces_images = []
@@ -89,4 +88,4 @@ class Video(object):
             ret, jpg = cv2.imencode('.jpg', frame)
         else:
             ret, jpg = cv2.imencode(".jpg", numpy.zeros((800, 800)))
-        return [jpg.tobytes(), []]
+        return [jpg.tobytes(), faces_images]
